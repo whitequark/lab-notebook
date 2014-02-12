@@ -17,3 +17,10 @@ task parametrically.
 <!--more-->
 
 {% include_code files/cut-rectangle.ngc lang:text %}
+
+You can even simulate the toolpath in [OpenSCAM][], as it can perform calculations
+in g-code:
+
+[openscam]: http://openscam.com/
+
+{% fancybox /images/cnc-pcb/cut-rectangle.png 400 %}
