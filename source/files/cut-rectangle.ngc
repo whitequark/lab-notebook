@@ -1,0 +1,32 @@
+(-- BEGIN CONFIGURATION --)
+
+(Tool size [mm])
+#100 = 1.0
+(Board width [mm])
+#101 = 20.0
+(Board height [mm])
+#102 = 30.0
+(Board thickness [mm])
+#103 = 1.5
+(Safe Z value [mm])
+#104 = 5.0
+
+(Feedrate [mm], spindle speed [rpm])
+F30 S1200
+
+(-- END CONFIGURATION --)
+
+(Metric, Absolute)
+G21 G90
+
+G00 X[-#100/2] Y[-#100/2] Z#104
+M03
+
+G01 Z[-#103]
+G01 Y[#102+#100/2]
+G01 X[#101+#100/2]
+G01 Y[-#100/2]
+G01 X[-#100/2]
+
+G00 Z#104
+M02

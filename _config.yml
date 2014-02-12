@@ -31,6 +31,7 @@ source:         source
 destination:    public
 plugins:        plugins
 category_dir:   notes/categories
+code_dir:       .
 
 titlecase:      false
 paginate:       10                # Posts per page on the blog index
