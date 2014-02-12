@@ -54,7 +54,7 @@ IC part numbers and their functions:
 
 As it can be seen, the board features quite a bit of unused functionality---it
 has unpopulated connectors for limit switches and spindle PWM, direction and cooling
-pump control. (I've soldered a pinhead to them already.)
+pump control. (I've soldered pinheads to them already.)
 
 I didn't trace the board completely, but it is built out of identical blocks.
 I've drawn its input and output circuits (`GNDIO` and `VCCIO` are provided by the
