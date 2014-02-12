@@ -23,30 +23,41 @@ module Jekyll
              ((?<size>\d+)\s+)?
              ("(?<title>.+)"\s+)?/ix)
 
-      thumbnail_size = data[:size] || 300
+      thumbnail_size = data[:size] || 250
 
       thumbnail_folder = File.expand_path "../source/images/thumbnails", File.dirname(__FILE__)
       FileUtils.mkdir_p thumbnail_folder
 
-      thumbnail_digest = Digest::SHA1.hexdigest("#{data[:src]}#{data[:size]}")
+      thumbnail_digest = Digest::SHA1.hexdigest("#{data[:src]}#{thumbnail_size}")
       thumbnail_name   = "#{thumbnail_digest}#{File.extname(data[:src])}"
       thumbnail_path   = File.join(thumbnail_folder, thumbnail_name)
 
-      unless File.exists?(thumbnail_path)
+      begin
         case URI.parse(data[:src])
         when URI::HTTP, URI::HTTPS
-          thumbnail_src = Tempfile.new('thumb')
-          thumbnail_src.write(Net::HTTP.get(URI(data[:src])))
+          unless File.exists?(thumbnail_path)
+            thumbnail_src = Tempfile.new('thumb')
+            thumbnail_src.write(Net::HTTP.get(URI(data[:src])))
+          end
         when URI::Generic
           source_folder = File.expand_path "../source", File.dirname(__FILE__)
-          thumbnail_src = File.open(File.join(source_folder, data[:src]))
+          source_file   = File.join(source_folder, data[:src])
+
+          if !File.exists?(thumbnail_path) ||
+             (File.stat(thumbnail_path).mtime < File.stat(source_file).mtime)
+            thumbnail_src = File.open(source_file)
+          end
         end
 
-        thumbnail_img = MicroMagick::Image.new(thumbnail_src.path)
-        thumbnail_img.resize("#{thumbnail_size}x#{thumbnail_size}").
-                      write(thumbnail_path)
+        if thumbnail_src
+          thumbnail_img = MicroMagick::Image.new(thumbnail_src.path)
+          thumbnail_img.resize("#{thumbnail_size}x#{thumbnail_size}").
+                        write(thumbnail_path)
 
-        thumbnail_src.close
+          thumbnail_src.close
+        end
+      rescue => e
+        $stderr.puts "#{e.class}: #{e.message}"
       end
 
       @data = {

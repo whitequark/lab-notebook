@@ -1,4 +1,5 @@
 <div class="post-header">
+  {% include post/date.html %}{{ time }}
   {% if index %}
     <h1 class="post-title">
       <a href="{{ root_url }}{{ post.url }}">{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}</a>
@@ -6,7 +7,17 @@
   {% else %}
     <h1 class="post-title">{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</h1>
   {% endif %}
-  {% include post/date.html %}{{ time }}
 </div>
 
+<div class="post-meta">
+  {% include post/categories.html %}
+</div>
+
+{% if index %}
+<div class="post-content">
+  {{ content | excerpt }}
+  <a rel="full-article" href="{{ root_url }}{{ post.url }}">Read on →</a>
+</div>
+{% else %}
 <div class="post-content">{{ content }}</div>
+{% endif %}

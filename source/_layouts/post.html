@@ -6,15 +6,16 @@ single: true
 {% include article.html %}
 
 <div class="post-single">
-  <div class="post-meta">
-    {% include post/categories.html %}
-  </div>
-  <div class="clear"></div>
-
   {% if site.disqus_short_name and page.comments == true %}
     <div id="comments">
       <h2>Comments</h1>
       <div id="disqus_thread" aria-live="polite"></div>
     </div>
+  {% else %}
+    <hr>
+    <span class="post-comment-notice">
+    Want to discuss this note? Drop me a <a href="mailto:{{ site.email }}?Subject={{ page.title }}">letter</a>
+    or mention <a href="https://twitter.com/home?status=@{{ site.twitter_user }}+">@{{ site.twitter_user }}</a>.
+    </span>
   {% endif %}
 </div>

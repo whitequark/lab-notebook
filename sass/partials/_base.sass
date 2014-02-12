@@ -51,20 +51,31 @@ $text-color: #444444
 
 a
   color: #01579f
-  text-decoration: none
   &:hover
     color: #0181eb
+
+time[title]
+  border-bottom: 1px dotted gray
+  line-height: 1.4em
 
 h1
   @extend .title
   margin-bottom: 13px
   font-size: 26px
+  a
+    text-decoration: none
 
 @for $i from 2 through 4
   h#{$i}
     @extend .title
     margin-bottom: 17px - $i * 5px
     font-size: 30px - $i * 5px
+    a
+      text-decoration: none
+
+hr
+  border: none
+  border-top: 1px dashed gray
 
 .fancybox img
   padding: 5px
