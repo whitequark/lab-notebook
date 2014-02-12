@@ -5,6 +5,7 @@ date: 2014-02-12 18:42:46 +0400
 comments: true
 categories:
   - hardware
+  - cnc
   - cnc3020t
 ---
 
@@ -120,9 +121,9 @@ Miscellaneous machine parameters, gleaned from the attached "documentation"
 |-----------------------+----------------------+
 | Max. acceleration X/Y | 200 mm/s²            |
 |-----------------------+----------------------+
-| Max. velocity X/Y     | 11.7 mm/s            |
+| Max. velocity Z       | 11.7 mm/s            |
 |-----------------------+----------------------+
-| Max. acceleration X/Y | 100 mm/s²            |
+| Max. acceleration Z   | 100 mm/s²            |
 |-----------------------+----------------------+
 | Table travel X        | 0..200 mm            |
 |-----------------------+----------------------+

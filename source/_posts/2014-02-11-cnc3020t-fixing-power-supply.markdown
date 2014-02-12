@@ -5,6 +5,7 @@ date: 2014-02-11 07:49:00 +0400
 categories:
  - hardware
  - repair
+ - cnc
  - cnc3020t
 ---
 
