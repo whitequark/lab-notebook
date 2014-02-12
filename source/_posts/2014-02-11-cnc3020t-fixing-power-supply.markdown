@@ -91,3 +91,7 @@ damage it? The answer is no:
 [ap1501]:    http://www.diodes.com/datasheets/AP1501.pdf
 [tb6560ahq]: http://www.glyn.de/data/glyn/media/doc/TB6560AHQ_AFG-20080407.pdf
 [l7812]:     http://datasheet.octopart.com/L7812CV-STMicroelectronics-datasheet-7271552.pdf
+
+The result is remarkably nice. At 29V, the machine consumes less than 3A (which is the limit
+for my power supply) with all three steppers spinning at once and the spindle at maximal speed.
+So it is a pretty convenient workaround.
