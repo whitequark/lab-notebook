@@ -25,7 +25,7 @@ The stepper board looks like this:
 {% fancybox gal-board /images/3020t/stepper-board-top.jpeg %}
 {% fancybox gal-board /images/3020t/stepper-board-bottom.jpeg %}
 
-The connectors `J7`, `J8`, `J9` correspond to axis X, Y, Z in that order.
+The connectors `J7`, `J8`, `J9` correspond to axes X, Y, Z in that order.
 
 IC part numbers and their functions:
 
