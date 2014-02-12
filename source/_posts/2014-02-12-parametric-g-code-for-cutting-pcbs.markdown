@@ -18,6 +18,9 @@ task parametrically.
 
 {% include_code files/cut-rectangle.ngc lang:text %}
 
+Of course, before you launch this script, you need to set up the coordinate system.
+Jogging the tool to `(0, 0, 0)` and executing `G10 L20 P0 X0 Y0 Z0` would do the job.
+
 You can even simulate the toolpath in [OpenSCAM][], as it can perform calculations
 in g-code:
 
