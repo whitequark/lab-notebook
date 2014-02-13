@@ -56,5 +56,6 @@ default_asides: []
 #   3rd Party Settings    #
 # ----------------------- #
 
-github_user:  whitequark
-twitter_user: whitequark
+github_user:    whitequark
+twitter_user:   whitequark
+gauges_site_id: 52fc9b0a92c6ac4ba200279e
