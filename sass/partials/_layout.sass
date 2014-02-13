@@ -1,6 +1,6 @@
 body
   padding: 20px 0
-  background: url(../images/bg.png) repeat
+  background: url(../images/theme/bg.png) repeat
   color: $text-color
   font-size: 12px
   line-height: 1.7
@@ -37,7 +37,7 @@ body
     margin-right: $social-link-gap
     a
       display: block
-      +replace-text("../images/icons.png", $social-link-width, $social-link-height)
+      +replace-text("../images/theme/icons.png", $social-link-width, $social-link-height)
       &.github:hover
         background-position: 0 (-$social-link-height)
       &.feed
