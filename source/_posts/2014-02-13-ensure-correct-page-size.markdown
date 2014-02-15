@@ -1,14 +1,12 @@
 ---
 layout: post
-title: "US Legal should be illegal"
+title: "Ensure correct page size"
 date: 2014-02-13 12:41:46 +0400
 comments: true
 categories:
   - pcb
   - fail
 ---
-
-... or: the danger of implicit software assumptions.
 
 I have found out in the most painful way possible that a lot of Linux desktop components
 (and I mean practically all of them) tend to inexplicably default to the US Legal paper size,
