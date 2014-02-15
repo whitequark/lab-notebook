@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Optimizing for best photoresist adhesion"
-date: 2014-02-13 16:57:27 +0400
+date: 2014-02-16 00:37:25 +0400
 comments: true
 categories:
   - pcb
@@ -24,7 +24,7 @@ Tools
 -----
 
 Laminator
-: [ROYAL PL-2100](http://www.royalsupplies.com/Laminators/PL-2100-Laminator.html), 120°C roller temperature
+: [ROYAL PL-2100](http://www.royalsupplies.com/Laminators/PL-2100-Laminator.html), 120°C roller temperatureo
 
 Printer
 : [Brother DCP-7010R](http://www.brother.ru/g3.cfm/s_page/92250/s_level/39720/s_product/DCP7010R), Brother cartridge/toner
