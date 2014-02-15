@@ -5,6 +5,7 @@ date: 2014-02-13 11:03:58 +0400
 comments: true
 categories:
   - pcb
+  - photoresist
 ---
 
 It is convenient to quickly determine exposure time and highest resolution for a new combination
