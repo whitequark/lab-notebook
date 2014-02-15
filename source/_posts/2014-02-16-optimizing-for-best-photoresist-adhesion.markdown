@@ -24,7 +24,7 @@ Tools
 -----
 
 Laminator
-: [ROYAL PL-2100](http://www.royalsupplies.com/Laminators/PL-2100-Laminator.html), 120°C roller temperatureo
+: [ROYAL PL-2100](http://www.royalsupplies.com/Laminators/PL-2100-Laminator.html), 120°C roller temperature
 
 Printer
 : [Brother DCP-7010R](http://www.brother.ru/g3.cfm/s_page/92250/s_level/39720/s_product/DCP7010R), Brother cartridge/toner
@@ -63,9 +63,9 @@ All operations with PCB are performed with latex gloves to avoid leaving fingerp
 
  1. Clean the PCB with isopropanol.
  2. Immerse PCB in NaOH for 10 min.
- 3. Wipe PCB dry with soft lint-free cloth thoroughly.
+ 3. Rinse PCB under warm tap water and wipe dry with soft lint-free cloth thoroughly.
  4. Remove matte (LDPE) protective film from photoresist.
- 5. Attach photoresist to PCB and put pressure on its front edge with fingers.
+ 5. Attach photoresist to PCB and put pressure on its front edge (any single edge) with fingers.
  6. Run PCB through laminator five times and let it cool down.
  7. Expose photoresist for 180 seconds (time calibrated for a particular setup).
  8. Remove glossy (PET) protective film from photoresist.
