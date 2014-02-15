@@ -64,8 +64,8 @@ All operations with PCB are performed with latex gloves to avoid leaving fingerp
  1. Clean the PCB with isopropanol.
  2. Immerse PCB in NaOH for 10 min.
  3. Rinse PCB under warm tap water and wipe dry with soft lint-free cloth thoroughly.
- 4. Remove matte (LDPE) protective film from photoresist.
- 5. Attach photoresist to PCB and put pressure on its front edge (any single edge) with fingers.
+ 4. Remove matte (polyolefin) protective film from photoresist.
+ 5. Attach photoresist to PCB and put pressure on its front edge (any single edge )with fingers.
  6. Run PCB through laminator five times and let it cool down.
  7. Expose photoresist for 180 seconds (time calibrated for a particular setup).
  8. Remove glossy (PET) protective film from photoresist.
@@ -80,7 +80,7 @@ All operations with PCB are performed with latex gloves to avoid leaving fingerp
 
  1. Clean the PCB with isopropanol. After cleaning, expose to air
     until no traces of isopropanol are left.
- 2. Remove matte (LDPE) protective film from photoresist.
+ 2. Remove matte (polyolefin) protective film from photoresist.
  3. Brush the PCB to remove any dust possibly present.
  4. Attach photoresist to PCB and put pressure on it with fingers.
  5. Run PCB through laminator and let it cool down.
