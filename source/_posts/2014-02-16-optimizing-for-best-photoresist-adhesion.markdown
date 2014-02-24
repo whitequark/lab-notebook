@@ -292,6 +292,8 @@ Quality: nearly perfect.
 Interlude: water break test
 ---------------------------
 
+**Update:** see [On water break test](/notes/2014-02-24/on-water-break-test/).
+
 I've noticed that the very first try, despite horribly selected conditions, yielded one
 of the best imprints. I've also noticed that each time I clean the PCB from exposed
 (and unexposed) resist, there remains a visible ghost picture of the traces from previous
