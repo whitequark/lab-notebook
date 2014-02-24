@@ -8,7 +8,7 @@ categories:
 ---
 
 I have used the water break test (checking whether copper surface is clean of contaminants
-based on the fact that really clean copper is hydrophobic) [in the past][photoresist], however
+based on the fact that really clean copper is hydrophilic) [in the past][photoresist], however
 I misunderstood how the test results must look.
 
 [photoresist]: /notes/2014-02-16/optimizing-for-best-photoresist-adhesion/#interlude-water-break-test
