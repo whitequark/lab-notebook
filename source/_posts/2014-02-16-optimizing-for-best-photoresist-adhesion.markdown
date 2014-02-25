@@ -69,7 +69,7 @@ All operations with PCB are performed with latex gloves to avoid leaving fingerp
  6. Run PCB through laminator five times and let it cool down.
  7. Expose photoresist for 180 seconds (time calibrated for a particular setup).
  8. Remove glossy (PET) protective film from photoresist.
- 9. Immerse PCB in developer solution for 2 minutes. Immediately after immersing, gently
+ 9. Immerse PCB in developer solution for 1-2 minutes. Immediately after immersing, gently
     scrub with a soft acrylic brush until all unexposed areas are free from photoresist.
  10. Rinse PCB under warm tap water.
 
