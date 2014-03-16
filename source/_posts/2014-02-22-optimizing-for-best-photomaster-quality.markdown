@@ -21,6 +21,9 @@ Result:
 
 <!-- more -->
 
+* table of contents
+{:toc}
+
 Tools
 -----
 

@@ -15,6 +15,8 @@ Using 15% (NH₄)₂S₂O₈ instead of 30% results in much more robust etching 
 
 <!-- more -->
 
+* table of contents
+{:toc}
 
 Materials
 ---------
