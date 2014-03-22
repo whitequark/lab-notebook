@@ -8,7 +8,10 @@ categories:
   - cnc
   - cnc3020t
   - repair
+published: false
 ---
+
+<!-- more -->
 
 Tools
 -----

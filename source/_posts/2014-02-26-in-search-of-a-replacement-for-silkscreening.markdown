@@ -5,6 +5,7 @@ date: 2014-02-26 20:07:52 +0400
 comments: true
 categories:
   - pcb
+published: false
 ---
 
 Names and placement markers on PCB aren't essential, but sure they are convenient. I'm
