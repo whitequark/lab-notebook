@@ -221,3 +221,8 @@ Conclusions
 Custom-made CNC-milled lenses are not complex to make; while the example above is not of high quality, it is my first attempt ever. I'm confident I could achieve much higher quality with the feedback I now have.
 
 It is interesting to consider which hobby projects could be made much easier if one can manufacture custom aspherical optical elements.
+
+It would make sense to change the process in some ways to get a better quality lens:
+
+  * Use thicker acrylic to avoid gluing anything, or at least glue several sheets prior to milling and mill out the parts which do not have glue-related defects.
+  * Use smaller milling step. 50µm is the vendor-provided *repeated* positioning resolution, but with microstepping, one could get resolutions as high as 10µm. It doesn't have to be perfect, just reduce the amount of polishing work.
