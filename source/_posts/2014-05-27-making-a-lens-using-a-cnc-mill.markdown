@@ -45,7 +45,9 @@ Polishing paste, Cr₂O₆-based, grain size 7-1µm
 G-code
 ------
 
-As usual, the G-code I publish is parametric; it can be easily customized for different material thickness, dimensions, etc, without the need for a proprietary CAM processor. Modify the "parameters" sections in the G-code and validate the result using [OpenSCAM][].
+As usual, the G-code I publish is parametric; it can be easily customized for different material thickness, dimensions, etc, without the need for a proprietary CAM processor. Modify the "parameters" sections in the G-code and validate the result using [OpenSCAM][]. The G-code will only work with [LinuxCNC][].
+
+[linuxcnc]: http://linuxcnc.org/
 
 In this case, the G-code defines a three-part parabolic lens milled out of a material sheet `#<_thickness>` mm thick, defined by equation `y = kx²`, with k = `#<_scale>`, using horizontal step `#<_eps>`.
 
