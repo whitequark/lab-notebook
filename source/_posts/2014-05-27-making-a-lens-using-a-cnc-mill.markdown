@@ -106,7 +106,7 @@ O<halflens> endsub
 ; Lens body toplevel
 O<lensbody> sub
   M3
-  F80
+  F400
   O<body> call
   M5
 O<lensbody> endsub
