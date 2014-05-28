@@ -12,6 +12,8 @@ categories:
 
 As I [wrote earlier][fixing-ps], the 3020T CNC mill has great mechanics, but somewhat flaky electronics. In this note, I will explain how to get rid of the transformer and use more efficient, more reliable, lighter, dual-voltage switch-mode power supplies.
 
+[fixing-ps]: /notes/2014-02-11/cnc3020t-fixing-power-supply/
+
 <!-- more -->
 
 * table of contents
