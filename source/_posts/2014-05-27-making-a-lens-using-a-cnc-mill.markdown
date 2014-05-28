@@ -86,10 +86,10 @@ O<cutout> endsub
 
 ; Mill out lens body
 O<body> sub
-  #<radius> = #<_radius>
-  G0 X-#<radius> Y0
+  G0 X-#<_radius> Y0
   G0 Z0
-  G2 I#<radius> Z-#<_thickness> P[#<_thickness> / #<_step>]
+  G2 I#<_radius> Z-#<_thickness> P[#<_thickness> / #<_step>]
+  G2 I#<_radius>
   G0 Z#<_zsafe>
 O<body> endsub
 
