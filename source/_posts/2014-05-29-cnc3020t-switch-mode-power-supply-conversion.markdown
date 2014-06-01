@@ -49,10 +49,10 @@ M3x5 screw × 7
 1.5mm multistranded wire × 5m
 : generic
 
-3.7mm wire U-type clamp for 0.25-1.65mm wire × 4
+3.7mm U-type clamp for 0.25-1.65mm wire × 4
 : generic
 
-4.3mm wire U-type clamp for 0.25-1.65mm wire × 12
+4.3mm U-type clamp for 0.25-1.65mm wire × 12
 : generic
 
 Assembly
