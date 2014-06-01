@@ -80,7 +80,7 @@ Now we need to attach the power supplies to the top of the box. For this, I have
 
 Before drilling, make sure that your printer or software did not distort the template; try to line up the circles on the template with the mounting holes on the power supplies.
 
-Note that the supplies have a rather poor way of isolating the PCB from the conductive aluminium case; it's just a thin, flexible plastic sheet. As such, make sure that the screws do not penetrate too far into the power supply case. I couldn't easily find appropriately short screws, so I used bolt cutter to shorten them appropriately.
+Note that the supplies have a rather poor way of isolating the PCB from the conductive aluminium case; it's just a thin, flexible plastic sheet. As such, make sure that the screws do not penetrate too far into the power supply case. I couldn't easily find appropriately short screws, so I used bolt cutter.
 
 {% fancybox /images/3020t-smps/drill-template.jpeg "Attached template" %}
 {% fancybox /images/3020t-smps/drill-holes.jpeg "Drilled holes" %}
