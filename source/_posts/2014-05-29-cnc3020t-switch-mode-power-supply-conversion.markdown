@@ -43,10 +43,16 @@ Components
 Materials
 ---------
 
-3.5mm wire clamp × 4
+M3x5 screw × 7
 : generic
 
-4.5mm wire clamp × 12
+1.5mm multistranded wire × 5m
+: generic
+
+3.7mm wire U-type clamp for 0.25-1.65mm wire × 4
+: generic
+
+4.3mm wire U-type clamp for 0.25-1.65mm wire × 12
 : generic
 
 Assembly
@@ -73,6 +79,8 @@ Now we need to attach the power supplies to the top of the box. For this, I have
 [svg]: /files/3020t-drill-template.svg
 
 Before drilling, make sure that your printer or software did not distort the template; try to line up the circles on the template with the mounting holes on the power supplies.
+
+Note that the supplies have a rather poor way of isolating the PCB from the conductive aluminium case; it's just a thin, flexible plastic sheet. As such, make sure that the screws do not penetrate too far into the power supply case. I couldn't easily find appropriately short screws, so I used bolt cutter to shorten them appropriately.
 
 {% fancybox /images/3020t-smps/drill-template.jpeg "Attached template" %}
 {% fancybox /images/3020t-smps/drill-holes.jpeg "Drilled holes" %}
