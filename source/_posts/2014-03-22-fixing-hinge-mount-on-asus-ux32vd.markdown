@@ -49,12 +49,10 @@ Tools
 -----
 
 CNC machine
-: [CNC3020T][]
+: [CNC3020T](http://www.freezepage.com/1395478161OWYSYNBZGX)
 
 2mm HSS drill bit with 3.175mm shank
 : generic
-
-[CNC3020T]: http://www.freezepage.com/1395478161OWYSYNBZGX
 
 Materials
 ---------

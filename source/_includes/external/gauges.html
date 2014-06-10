@@ -2,6 +2,7 @@
 <script type="text/javascript">
   var _gauges = _gauges || [];
   (function() {
+    if(document.location.host.indexOf('localhost') != -1) return;
     var t   = document.createElement('script');
     t.type  = 'text/javascript';
     t.async = true;

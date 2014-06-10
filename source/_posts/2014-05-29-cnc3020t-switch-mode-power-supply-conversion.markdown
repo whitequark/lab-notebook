@@ -55,7 +55,7 @@ M3x6 screw ×7
 M4x12 screw x1
 : generic
 
-1.5mm multistranded wire ×5m
+0.5mm² multistranded hookup wire ×5m
 : generic
 
 3.7mm U-type terminal (0.25-1.65mm wire) ×6

@@ -1,0 +1,188 @@
+; "Tabbed" container wall. Tabs comprise 1/3 of length.
+; Optionally, tab on right edge may be omitted.
+; Assumes G41
+O<profile_step> sub
+  #<width>  = #1
+  #<length> = #2
+  #<depth>  = #3
+  #<xtab>   = #4 ; 0 or 1; 1 means tab, 0 means slot)
+  #<ytab>   = #5 ; -//-
+  #<flat>   = #6
+  #<init>   = #7 ; 0 or 1; 1 means initial plunge
+
+  ; Initial point
+  G0 X[#<xtab> * #<_thickness>] Y[#<ytab> * #<_thickness>]
+  O100 if [#<init>]
+    G0 Z0
+  O100 endif
+  G1 F#<_plunge> Z#<depth>
+
+  ; Left edge
+  F#<_feed>
+  Y[#<length> / 3]
+  X[[1 - #<xtab>] * #<_thickness>]
+  Y[#<length> / 3 * 2]
+  X[#<xtab> * #<_thickness>]
+  Y[#<length> - [#<ytab> * #<_thickness>]]
+
+  ; Top edge
+  X[#<width> / 3]
+  Y[#<length> - [1 - #<ytab>] * #<_thickness>]
+  X[#<width> / 3 * 2]
+  Y[#<length> - #<ytab> * #<_thickness>]
+  X[#<width> - [#<xtab> * #<_thickness>]]
+
+  ; Right edge
+  O110 if [#<flat>]
+    Y[#<ytab> * #<_thickness>]
+  O110 else
+    Y[#<length> / 3 * 2]
+    X[#<width> - [1 - #<xtab> ] * #<_thickness>]
+    Y[#<length> / 3]
+    X[#<width> - #<xtab> * #<_thickness>]
+    Y[#<ytab> * #<_thickness>]
+  O110 endif
+
+  ; Bottom edge
+  X[#<width> / 3 * 2]
+  Y[[1 - #<ytab>] * #<_thickness>]
+  X[#<width> / 3]
+  Y[#<ytab> * #<_thickness>]
+  X[#<xtab> * #<_thickness>]
+O<profile_step> endsub
+
+; "Tabbed" container wall. Tabs comprise 1/3 of length.
+O<profile> sub
+  #<width>  = #1
+  #<length> = #2
+  #<xtab>   = #3 ; 0 or 1; 1 means tab, 0 means slot)
+  #<ytab>   = #4 ; -//-
+  #<flat>   = #5 ; 0 or 1; 1 means no right tab
+
+  #<depth>  = [-#<_step>]
+  #<init>   = 1
+
+  G41 ; Cutter compensation to the left
+
+  O100 while [#<depth> GE -#<_thickness>]
+    O<profile_step> call [#<width>] [#<length>] [#<depth>] [#<xtab>] [#<ytab>] [#<flat>] [#<init>]
+
+    #<depth> = [#<depth> - #<_step>]
+    #<init>  = 0
+  O100 endwhile
+
+  O110 if [#<depth> NE -#<_thickness>]
+    O<profile_step> call [#<width>] [#<length>] [-#<_thickness>] [#<xtab>] [#<ytab>] [#<flat>] [0]
+  O110 endif
+
+  G40
+
+  ; Pause between workpieces
+  G0 Z#<_zsafe>
+  M1
+
+O<profile> endsub
+
+; Offset G55 coordinate system based on G54
+O<translate> sub
+  #<dx> = #1
+  #<dy> = #2
+
+  G10 L2 P2 X[#5221 + #<dx>] Y[#5222 + #<dy>] Z#5223 R#5230
+
+O<translate> endsub
+
+; Helix-mill a hole.
+; Assumes metric, XY plane, feedrate, and tool diameter are set.
+O<helix_mill> sub
+  #<xcenter> = #1 ( [mm] X center         )
+  #<ycenter> = #2 ( [mm] Y center         )
+  #<radius>  = #3 ( [mm] Hole radius      )
+  #<zstart>  = #4 ( [mm] Z start position )
+  #<zend>    = #5 ( [mm] Z end position   )
+
+  G0 X#<xcenter> Y#<ycenter>
+  #<znow> = #<zstart>
+
+  G42 ; Cutter compensation to the right
+
+  ; Cutter compensation entry
+  F#<_feed>
+  G1 X[ #<xcenter> - #<radius> ] Y#<ycenter>
+  G1 Z#<zstart>
+
+  ; Mill out body with several full helical turns
+  O100 while [ #<znow> GT [ #<zend> + #<_step> ] ]
+
+    #<znow> = [ #<znow> - #<_step> ]
+    G2 I#<radius> J0 Z#<znow>
+
+  O100 endwhile
+
+  G2 I#<radius> J0 Z#<zend>
+
+  ; Flat out the bottom
+  G2 I#<radius> J0
+
+  G40
+
+  G0 Z#<_zsafe>
+
+O<helix_mill> endsub
+
+( === BEGIN PARAMETERS === )
+
+; Metric, Absolute, XY plane
+G21 G90 G17
+
+; Safe Z level (above workpiece)
+#<_zsafe>      = 25.
+
+; Feeds/speeds for milling acrylic. *DO NOT FORGET COOLANT*
+S7000
+#<_thickness>  = 3.
+#<_step>       = 0.4
+#<_feed>       = 600.
+#<_plunge>     = 100.
+
+; Box size
+#<width>       = 240.  ; X
+#<length>      = 33.   ; Y
+#<height>      = 26.   ; Z
+
+; Outflow pipe radius
+#<rpipe>       = 3.
+
+; Offset between workpieces
+#<offset>      = 10.
+
+( === END PARAMETERS === )
+
+; G54 contains base offset, G55 is for current workpiece
+G55
+
+T1 M6 ; 1mm cylindrical
+M3    ; Spindle on
+
+; Left/right walls
+O<translate>  call [0] [0]
+O<profile>    call [#<height>] [#<length>] [1] [1] [1] ; xtab ytab flat
+O<translate>  call [#<height> + #<offset>] [0]
+O<profile>    call [#<height>] [#<length>] [1] [1] [1]
+
+; Front/back walls
+O<translate>  call [0] [#<length> + #<offset>]
+O<profile>    call [#<height>] [#<width>] [1] [0] [1] ; xtab !ytab flat
+O<translate>  call [#<height> + #<offset>] [#<length> + #<offset>]
+O<profile>    call [#<height>] [#<width>] [1] [0] [1]
+
+; Bottom wall
+O<translate>  call [[#<height> + #<offset>] * 2] [#<length> + #<offset>]
+O<helix_mill> call [#<length> / 2] [10.0] [#<rpipe>] [0] [-3.0]
+O<profile>    call [#<length>] [#<width>] [0] [0] [0] ; !xtab !ytab !flat
+
+; Finalize
+G0 Z#<_zsafe>
+G54
+
+M2
