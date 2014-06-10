@@ -22,20 +22,26 @@ As I [wrote earlier][fixing-ps], the 3020T CNC mill has great mechanics, but som
 Tools
 -----
 
-Drill
+Electric drill
 : generic
 
 Ø 3mm drill bit
+: generic
+
+Clamper/cutter
+: generic
+
+Black permanent marker
 : generic
 
 Components
 ----------
 
 110V-220V/24V 2A power supply
-: [generic][24v]
+: [LIHUA-48W][24v]
 
 110V-220V/48V 5A power supply
-: [generic][48v]
+: [Meanwell S-240-48][48v]
 
 [24v]: http://archive.today/GJmaB
 [48v]: http://archive.today/IW9ZC
@@ -43,16 +49,19 @@ Components
 Materials
 ---------
 
-M3x5 screw × 7
+M3x6 screw ×7
 : generic
 
-1.5mm multistranded wire × 5m
+M4x12 screw x1
 : generic
 
-3.7mm U-type clamp for 0.25-1.65mm wire × 4
+1.5mm multistranded wire ×5m
 : generic
 
-4.3mm U-type clamp for 0.25-1.65mm wire × 12
+3.7mm U-type terminal (0.25-1.65mm wire) ×6
+: generic
+
+4.3mm U-type terminal (0.25-1.65mm wire) ×10
 : generic
 
 Assembly
