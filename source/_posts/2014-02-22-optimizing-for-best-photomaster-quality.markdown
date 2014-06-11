@@ -5,7 +5,7 @@ date: 2014-02-22 05:48:15 +0400
 comments: true
 categories:
   - pcb
-  - photoresist
+  - photolitography
 ---
 
 Objective:

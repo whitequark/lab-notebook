@@ -7,6 +7,7 @@ categories:
   - hardware
   - cnc
   - cnc3020t
+published: false
 ---
 
 In this note I explain the way to extend the 3020T CNC mill with a coolant pump (especially useful for milling plastic) and also, as a side effect, a spindle direction switch.
@@ -27,7 +28,7 @@ CNC machine
 d=1mm l=10mm D=3.175mm diamond-cut flat carbide endmill
 : [generic](https://archive.today/1958C)
 
-Electric drill
+electric drill
 : generic
 
 Ø 3mm drill bit
@@ -35,6 +36,8 @@ Electric drill
 
 L=200mm diamond file set
 : generic
+
+See also ["Producing PCBs using photolitography"](/notes/2014-06-11/producing-pcbs-using-photolitography/#tools).
 
 Materials (water sink)
 ----------------------
@@ -78,11 +81,29 @@ windshield washer tank
 M4x0.7x10 stainless steel hex cap screw
 : [generic](https://archive.today/pB61A)
 
-Materials (electronics)
------------------------
+Materials (control board)
+-------------------------
 
 adjustable 0~37V / 0~40V 3A buck converter
 : [MasterKit BM037M](http://www.masterkit.ru/main/set.php?code_id=850630)
+
+flyback diode
+: [1N4944](www.semtech.com/images/datasheet/1n49xx.pdf)
+
+24V 10A 1-closure relay
+: [834-1A-B-C](www.songchuan.eu/en/attachments/030_834.pdf), Song Chuan
+
+24V 5A 2-switch relay
+: [TR99-24VDC-SB-CD](http://us.100y.com.tw/pdf_file/TR99.pdf), Tai-shing Electronics Components
+
+2-pin screw terminal, l=5mm
+: [301-021-12](http://lib.chipdip.ru/064/DOC000064100.pdf), Xinya
+
+0.5mm² multistranded hookup wire ×2m
+: generic
+
+Materials (mechanical)
+----------------------
 
 M3x5 screw ×8
 : generic
@@ -93,13 +114,10 @@ M3x10 copper PCB stand ×8
 M3 nut ×8
 : generic
 
-0.5mm² multistranded hookup wire ×2m
-: generic
-
 Materials (PCB manufacturing)
 -----------------------------
 
-TBD
+See ["Producing PCBs using photolitography"](/notes/2014-06-11/producing-pcbs-using-photolitography/#materials).
 
 G-code for container
 --------------------
@@ -165,3 +183,13 @@ However, and this is **important**, the screws which attach the table of the mil
 {% fancybox gal-rust /images/3020t-coolant-pump/rust-2.jpeg %}
 
 {% video /videos/3020t-coolant-pump.webm 500 /videos/3020t-coolant-pump.png %}
+
+Designing control board
+-----------------------
+
+I have designed the modification around adding two PCBs to the control block; one with the factory-made buck converter for the pump, and another to integrate it with the LPT interface board. I decided that it is easiest to use relays for switching powerful inductive loads.
+
+The integration board ([EAGLE source](/files/3020t-coolant-pump/intf-board.tbz2); [G-code and photonegatives](/files/3020t-coolant-pump/intf-board-fab.tbz2)) is a very simple board with two relays and two bipolar transistors. The transistors are required, as the optocouplers on the LPT interface board can output no more than 30mA@5V, and driving relays requires higher current.
+
+{% fancybox gal-intf /images/3020t-coolant-pump/intf-board-schematics.png %}
+{% fancybox gal-intf /images/3020t-coolant-pump/intf-board-layout.png %}

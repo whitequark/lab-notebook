@@ -5,8 +5,10 @@ date: 2014-02-16 00:37:25 +0400
 comments: true
 categories:
   - pcb
-  - photoresist
+  - photolitography
 ---
+
+**Update:** [superseded](/notes/2014-06-11/producing-pcbs-using-photolitography/#preparation).
 
 Objective:
 : find the process which results in sharpest imprint after developing negative photoresist.

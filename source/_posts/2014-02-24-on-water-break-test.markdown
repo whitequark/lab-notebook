@@ -7,6 +7,8 @@ categories:
   - pcb
 ---
 
+**Update:** [superseded](/notes/2014-06-11/producing-pcbs-using-photolitography/#preparation).
+
 I have used the water break test (checking whether copper surface is clean of contaminants
 based on the fact that really clean copper is hydrophilic) [in the past][photoresist], however
 I misunderstood how the test results must look.
