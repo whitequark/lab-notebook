@@ -38,7 +38,7 @@ latex gloves
 : [diamond-grip powder-free latex gloves](https://archive.today/Qbyx2)
 
 exposure press
-: 3.175mm clear acrylic sheet
+: d=3.175mm clear acrylic sheet
 
 soft brush
 : generic soft acrylic brush
@@ -82,6 +82,8 @@ Milling and drilling
 --------------------
 
 I use [pcb-gcode](http://www.pcbgcode.org/) ([settings](/files/pcb-photolitography/pcb-gcode-settings.tbz2)) for EAGLE to produce G-code for drilling and milling. I draw a contour on the "Milling" layer to cut out the PCB.
+
+Note that if your tools have different lengths, you should set the Z offset in the LinuxCNC tool table; the configuration includes the `G43` code after tool changing sequence.
 
 {% fancybox gal-eagle /images/pcb-photolitography/board-layout.png %}
 {% fancybox gal-eagle /images/pcb-photolitography/drill-mill-gcode.png %}
