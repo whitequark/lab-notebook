@@ -22,16 +22,16 @@ As I [wrote earlier][fixing-ps], the 3020T CNC mill has great mechanics, but som
 Tools
 -----
 
-Electric drill
+electric drill
 : generic
 
-Ø 3mm drill bit
+d=3mm drill bit
 : generic
 
-Clamper/cutter
+clamper/cutter
 : generic
 
-Black permanent marker
+black permanent marker
 : generic
 
 Components
