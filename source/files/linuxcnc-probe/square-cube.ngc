@@ -1,0 +1,48 @@
+G21 G90 G17 ; Metric, Absolute, XY plane
+T01 G43 M06 ; 1mm cylindrical
+
+; 6061 Al
+S8000
+#<_feed>   = 200
+#<_plunge> = 40
+
+; length of edge
+#<_size>   = [ #5190 + 2 ] ; [mm] derived from probe-cube.ngc
+#<_depth>  = #5191         ; [mm]
+#<_step>   = 0.2           ; [mm]
+
+; initial positioning
+G0 Z1
+G0 X0 Y0
+
+M03 ; spindle CW
+
+; mill layers of #<_step> height
+#<pos_v> = 0
+O100 while [ #<pos_v> LT #<_depth> ]
+  #<pos_v> = [ #<pos_v> + #<_step> ]
+  O110 if [ #<pos_v> GT #<_depth> ]
+    #<pos_v> = #<_depth>
+  O110 endif
+  F#<_plunge> G1 Z-#<pos_v>
+
+  ; mill face in steps of tool radius
+  ; the first circle has 100% TEA, hence it uses
+  ; lower feedrate
+  #<pos_h> = [ #5410 * 0.6 ]
+  F#<_plunge> G1 X-#<pos_h>
+  O120 while [ #<pos_h> LE #<_size>/2*sqrt[2] ]
+    G2 I#<pos_h> ; conventional milling
+    #<pos_h> = [ #<pos_h> + #5410 * 0.6 ]
+    F#<_plunge>  G1 X-#<pos_h>
+    F#<_feed>
+  O120 endwhile
+
+  G0 Z0
+  G0 X0 Y0
+O100 endwhile
+
+; final positioning
+G0 Z10
+
+M02
