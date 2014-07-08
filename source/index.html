@@ -11,9 +11,11 @@ current: notes
 
 <div id="pagination">
   {% if paginator.next_page %}
-    <a class="prev" href="{{ paginator.next_page }}">&laquo;Previous</a>
+    <a class="prev" href="/notes/{{ paginator.next_page }}">&laquo;Previous</a>
   {% endif %}
-  {% if paginator.previous_page %}
-    <a class="next" href="{{ paginator.previous_page }}">Next&raquo;</a>
+  {% if paginator.previous_page == 1 %}
+    <a class="next" href="/">Next&raquo;</a>
+  {% elsif paginator.previous_page %}
+    <a class="next" href="/notes/{{ paginator.previous_page }}">Next&raquo;</a>
   {% endif %}
 </div>
