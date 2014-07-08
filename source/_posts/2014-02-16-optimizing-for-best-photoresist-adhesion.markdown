@@ -8,7 +8,7 @@ categories:
   - photolitography
 ---
 
-**Update:** [superseded](/notes/2014-06-11/producing-pcbs-using-photolitography/#preparation).
+**Update 2014-06-11:** [superseded](/notes/2014-06-11/producing-pcbs-using-photolitography/#preparation).
 
 Objective:
 : find the process which results in sharpest imprint after developing negative photoresist.
@@ -294,7 +294,7 @@ Quality: nearly perfect.
 Interlude: water break test
 ---------------------------
 
-**Update:** see [On water break test](/notes/2014-02-24/on-water-break-test/).
+**Update 2014-02-24:** see [On water break test](/notes/2014-02-24/on-water-break-test/).
 
 I've noticed that the very first try, despite horribly selected conditions, yielded one
 of the best imprints. I've also noticed that each time I clean the PCB from exposed
