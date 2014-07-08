@@ -1,6 +1,6 @@
 ; This G-code program probes a cube and sets the current coordinate
 ; system so that it is centered at the face and Z is zero at highest point.
-; The variable #5190 is set to edge length, and #5191 is set to the Z difference 
+; The variable #5190 is set to edge length, and #5191 is set to the Z difference
 ; between highest and lowest point.
 ;
 ; This script should be invoked twice.
@@ -16,7 +16,7 @@
 
 G21 G91 G17 ; Metric, Incremental, XY plane
 G43         ; Length compensation on
-F100        ; Probing feedrate
+F50         ; Probing feedrate
 
 #<_delta> = 8.0 ; [mm]
 
@@ -84,8 +84,8 @@ O100 else
   G0    X#<_delta>
 
   ; record size
-  #5190 = [ [#<xsize> + #<ysize>] / 2 ]  
- 
+  #5190 = [ [#<xsize> + #<ysize>] / 2 ]
+
   ; probe surface
   O<120> sub
     G90 G0 X#1 Y#2
@@ -93,17 +93,17 @@ O100 else
     #[#3] = #5063
     G0 Z[#<_delta> / 2]
   O<120> endsub
- 
+
   G0 Z#<_delta>
-  O<120> call [-[#5190/2-#<delta>/2]] [-[#5190/2-#<delta>/2]] [100]
-  O<120> call [-[#5190/2-#<delta>/2]] [+[#5190/2-#<delta>/2]] [101]
-  O<120> call [+[#5190/2-#<delta>/2]] [+[#5190/2-#<delta>/2]] [102]
-  O<120> call [+[#5190/2-#<delta>/2]] [-[#5190/2-#<delta>/2]] [103]
+  O<120> call [-[#5190/2-#<_delta>/2]] [-[#5190/2-#<_delta>/2]] [100]
+  O<120> call [-[#5190/2-#<_delta>/2]] [+[#5190/2-#<_delta>/2]] [101]
+  O<120> call [+[#5190/2-#<_delta>/2]] [+[#5190/2-#<_delta>/2]] [102]
+  O<120> call [+[#5190/2-#<_delta>/2]] [-[#5190/2-#<_delta>/2]] [103]
   O<120> call [0]                     [0]                     [104]
 
-  ; calculate 
+  ; calculate
   O<max> call [5] [#100] [#101] [#102] [#103] [#104]
-  G10 L20 P#5220 Z[#104 - #31 + #<delta>/2]
+  G10 L20 P#5220 Z[#104 - #31 + #<_delta>/2]
   #<max> = #31
 
   O<min> call [5] [#100] [#101] [#102] [#103] [#104]
