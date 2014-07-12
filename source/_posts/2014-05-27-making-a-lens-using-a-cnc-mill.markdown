@@ -115,3 +115,5 @@ It would make sense to change the process in some ways to get a better quality l
 
   * Use thicker acrylic to avoid gluing anything, or at least glue several sheets prior to milling and mill out the parts which do not have glue-related defects.
   * Use smaller milling step. 50µm is the vendor-provided *repeated* positioning resolution, but with microstepping, one could get resolutions as high as 10µm. It doesn't have to be perfect, just reduce the amount of polishing work.
+  * Use a ballnose endmill, a cylindrical one isn't suitable for profiling.
+  * Use a polishing paste that's not from 80s, or at least properly dissolve it in kerosene. It's a mess, though.
