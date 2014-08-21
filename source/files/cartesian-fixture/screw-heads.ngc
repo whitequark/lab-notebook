@@ -1,0 +1,93 @@
+; === HELICAL MILLING ===
+
+; Helix-mill a hole.
+; Assumes metric, XY plane, feedrate, and tool compensation are set.
+O<helix_mill> sub
+  #<xcenter> = #1 ; [mm] X center
+  #<ycenter> = #2 ; [mm] Y center
+  #<radius>  = #3 ; [mm] Hole radius
+  #<zstart>  = #4 ; [mm] Z start position
+  #<zend>    = #5 ; [mm] Z end position
+
+  G0 X[ #<xcenter> - #<radius> ] Y#<ycenter>
+
+  G0 Z#<zstart>
+  #<znow> = #<zstart>
+
+  ; Mill out body with several full helical turns
+  O100 while [ #<znow> GT [ #<zend> + #<_zstep> ] ]
+
+    #<znow> = [ #<znow> - #<_zstep> ]
+    G2 I#<radius> J0 Z#<znow>
+
+  O100 endwhile
+
+  G2 I#<radius> J0 Z#<zend>
+
+  ; Flat out the bottom
+  G2 I#<radius> J0
+
+O<helix_mill> endsub
+
+; === SCREW/NUT POCKETING ===
+
+; Mill a pocket for a screw head.
+; Assumes metric, XY plane, feedrate, and tool diameter are set.
+O<screw_head_pocket> sub
+
+  #<xcenter>     = #1 ; [mm] X center
+  #<ycenter>     = #2 ; [mm] Y center
+  #<head_radius> = #3 ; [mm] Screw head thickness
+  #<head_depth>  = #4 ; [mm] Screw head depth
+
+  ; Initial position
+  G0 X#<xcenter> Y#<ycenter>
+
+  ; Cutter compensation to the right.
+  G42
+
+  ; Make a pocket for screw head.
+  #<rnow> = #<head_radius>
+  O100 while [ #<rnow> GT [ #5410 / 2 ] ]
+
+    O<helix_mill> call [#<xcenter>] [#<ycenter>] [#<rnow>] [0.] [-#<head_depth>]
+
+    #<rnow> = [ #<rnow> - #5410 * 0.9 ] ; Subtract 90% tool diameter
+
+    G0 Z0.0 ; Get tool up for another plunge
+
+  O100 endwhile
+
+  ; Cleanup.
+  G40
+  G0 Z#<_zsafe>
+
+O<screw_head_pocket> endsub
+
+; --- BEGIN CONFIGURATION ---
+
+; Don't forget to set up tool table.
+
+T2 M6 S2500 F300 ; 3.175mm cylindrical
+
+#<_zsafe>       = 10.  ; [mm] Safe Z
+#<_zstep>       = 3.   ; [mm] Z step
+
+#<_thickness>   = 12.7 ; [mm] Sheet thickness
+#<_head_radius> = 6.   ; [mm] Screw head radius
+#<_head_depth>  = 8.   ; [mm] Screw head depth
+
+; --- END CONFIGURATION ---
+
+G21 G90 G17 ; Metric, Absolute, XY plane
+M3
+
+/O<screw_head_pocket> call [0]   [0]   [#<_head_radius>] [#<_head_depth>]
+O<screw_head_pocket> call [0]   [130] [#<_head_radius>] [#<_head_depth>]
+O<screw_head_pocket> call [0]   [260] [#<_head_radius>] [#<_head_depth>]
+O<screw_head_pocket> call [150] [0]   [#<_head_radius>] [#<_head_depth>]
+O<screw_head_pocket> call [150] [130] [#<_head_radius>] [#<_head_depth>]
+/O<screw_head_pocket> call [150] [260] [#<_head_radius>] [#<_head_depth>]
+
+G0 Z#<_zsafe>
+M2
