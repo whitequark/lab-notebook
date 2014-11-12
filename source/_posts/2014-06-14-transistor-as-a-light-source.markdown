@@ -5,6 +5,7 @@ date: 2014-06-14 21:49:14 +0400
 comments: true
 categories:
   - semiconductors
+  - pretty pictures
 ---
 
 In this note I demonstrate that a bipolar transistor can be made to emit light.
