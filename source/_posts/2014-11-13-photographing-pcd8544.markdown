@@ -34,7 +34,7 @@ At last, I decided to simply burn it. I heated it up in blue MAPP flame (somewhe
 
 After separating, I scrubbed the surface of the chip, first **gently** using the edge of the tweezers, then using a Q-tip soaked in isopropanol. This left the surface quite clean.
 
-The following picture were taken using the [Sony α3000](http://store.sony.com/a3000-interchangeable-lens-digital-camera-zid27-ILCE3000K/B/cat-27-catid-All-Alpha-a3000) camera and [Sony E 30mm F3.5](http://store.sony.com/e-30mm-f3.5-macro-e-mount-macro-lens-zid27-SEL30M35/cat-27-catid-All-E-Mount-Lenses) macro lens. The chip was illuminated using a noname white LED lamp from IKEA; exposure was set to ISO100 and shutter to 1/20. The camera was mounted on a tripod and shutter was set to a 10-second delay in order to eliminate any vibration.
+The following picture were taken using the [Sony α3000](http://store.sony.com/a3000-interchangeable-lens-digital-camera-zid27-ILCE3000K/B/cat-27-catid-All-Alpha-a3000) camera and [Sony E 30mm F3.5](http://store.sony.com/e-30mm-f3.5-macro-e-mount-macro-lens-zid27-SEL30M35/cat-27-catid-All-E-Mount-Lenses) macro lens. The chip was illuminated using a noname white LED lamp from IKEA; exposure was set to ISO100 and shutter to 1/20. The camera was mounted on a tripod and shutter was set to a 10-second delay in order to eliminate any vibration. The pictures were taken in RAW mode and further processed in [darktable](http://www.darktable.org/).
 
 {% fancybox /images/pcd8544/bare-photo.png 600 %}
 
