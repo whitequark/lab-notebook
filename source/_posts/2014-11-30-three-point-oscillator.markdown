@@ -14,6 +14,9 @@ In this note I describe a [Gouriet-Clapp capacitive three-point oscillator][gc],
 
 <!--more-->
 
+* table of contents
+{:toc}
+
 Tools
 -----
 

@@ -13,6 +13,9 @@ I found it convenient to have a table with a grid of nuts for attaching the work
 
 <!-- more -->
 
+* table of contents
+{:toc}
+
 Introduction
 ------------
 

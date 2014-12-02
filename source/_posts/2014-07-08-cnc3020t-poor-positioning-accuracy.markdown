@@ -13,6 +13,9 @@ The CNC3020T mill that I own has terrible repeat positioning accuracy. In this n
 
 <!-- more -->
 
+* table of contents
+{:toc}
+
 Methodology
 -----------
 
