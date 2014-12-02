@@ -105,7 +105,7 @@ After the pressure is under 100 Pa, a glow discharge can start. Place the chambe
 
 {% fancybox /images/coffee-bin-chamber/violet.jpeg %}
 
-I've also heated the chamber to ~60°C while pumped down, which caused it to glow white rather than purple:
+I've also heated the chamber to ~60°C while pumped down, which caused it to glow white rather than purple, even after it cools down:
 
 {% fancybox /images/coffee-bin-chamber/white.jpeg %}
 
