@@ -23,8 +23,11 @@ rotary vane vacuum pump
 CNC mill
 : [CNC3020T](http://www.freezepage.com/1395478161OWYSYNBZGX)
 
-CNC fixture attachment
+CNC3020T fixture attachment
 : [own work](/notes/2014-08-17/a-fixture-attachment-system-for-cnc-3020t/)
+
+CNC3020T coolant mod
+: [own work](/notes/2014-06-16/cnc3020t-coolant-pump-and-ccw-rotation/)
 
 flat endmill
 : d=1.6mm two flute endmill
