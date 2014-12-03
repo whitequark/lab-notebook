@@ -6,6 +6,7 @@ comments: true
 categories:
   - hardware
   - high voltage
+  - vacuum
 ---
 
 In this note I describe a [Gouriet-Clapp capacitive three-point oscillator][gc], which is an extremely simple circuit that produces high-frequency (~20-30MHz) electromagnetic field. It can light up gas discharge tubes and as such can be used to estimate pressure in vacuum systems.
