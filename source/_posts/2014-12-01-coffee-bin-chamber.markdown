@@ -44,8 +44,8 @@ rf power source
 Materials
 ---------
 
-glass bin
-: Nescafe 200ml coffee bin
+glass jar
+: Nescafe 200ml coffee jar
 
 flat elastomer sheet
 : generic latex glove
