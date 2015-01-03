@@ -106,7 +106,7 @@ Results
 
 Working with glass is much easier than I expected. If minor chipping is not a problem for you, then it's even easier than acrylic and aluminium.
 
-It would be interested to mill an aspherical [lens](/notes/2014-05-27/making-a-lens-using-a-cnc-mill/) using this technique and a diamond burr.
+It would be interested to mill an aspherical [lens](/notes/2014-05-27/making-a-lens-using-a-cnc-mill/) using this technique and a spherical diamond burr.
 
 The new flange keeps the vacuum well. (Seal not pictured.)
 
