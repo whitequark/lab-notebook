@@ -38,7 +38,9 @@ Measurement
 -----------
 
 The circuit implements a pulse generator using a MOSFET half-bridge with
-the fall time of ~15ns. The blue channel probes _pulse_ and the yellow one probes _common_.
+the fall time of ~15ns and uses regular 0.125W thin film resistors.
+It is simple and reuses components I already had.
+The blue channel probes _pulse_ and the yellow one probes _common_.
 
 The DUT has a recovery time of about 5µs, which of course makes it useless in a rectifier
 working at ~350kHz.
