@@ -42,8 +42,8 @@ the fall time of ~15ns and uses regular 0.125W thin film resistors.
 It is simple and reuses components I already had.
 The blue channel probes _pulse_ and the yellow one probes _common_.
 
-The DUT has a recovery time of about 5µs, which of course makes it useless in a rectifier
-working at ~350kHz.
+The DUT has a recovery time of about 7.5µs, which of course makes it useless in a rectifier
+working at ~350kHz. (The cursors do not highlight the entire recovery interval.)
 ![1a7 measurement](/images/diode-recovery/1a7.png){:style="max-width:100%"}
 
 For comparison, these are the waveforms corresponding to 1N4148 (4ns recovery time) tested
