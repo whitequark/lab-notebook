@@ -196,3 +196,6 @@ are provided so far, as the only testing done so far was done with an arc,
 which is neither a typical nor useful load.
 
 The board will probably have to be respun to obtain better ADC performance.
+
+The power dissipation on the inductor is annoying, but acceptable with forced
+air cooling.
