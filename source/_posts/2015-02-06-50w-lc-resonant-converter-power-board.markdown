@@ -164,6 +164,26 @@ The firmware currently includes a frequency generator with 1/72MHz pulse width r
 and ADC readout with averaging. The ADC readout is performed in phase lock with the frequency
 output so as to avoid switching at the same time as ADC sampling.
 
+The Maple to power board connection map is as follows:
+
++----------+-------------+------------+
+| Maple    | Power board | Function   |
++----------+-------------+------------+
+| GND      | 1           |            |
++----------+-------------+------------+
+| 3V3      | 2           |            |
++----------+-------------+------------+
+| D6       | 3           | Frequency  |
++----------+-------------+------------+
+| D33      | 4           | MISO       |
++----------+-------------+------------+
+| D32      | 5           | SCK        |
++----------+-------------+------------+
+| D31      | 6           | NSS        |
++----------+-------------+------------+
+| D34      | 7           | MOSI       |
++----------+-------------+------------+
+
 The firmware offers a simple UI:
 
 {% fancybox /images/50w-lc-converter/controlboard-mockup.jpeg %}
