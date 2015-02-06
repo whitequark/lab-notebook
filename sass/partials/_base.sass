@@ -65,13 +65,21 @@ h1
   a
     text-decoration: none
 
-@for $i from 2 through 4
-  h#{$i}
-    @extend .title
-    margin-bottom: 17px - $i * 5px
-    font-size: 30px - $i * 5px
-    a
-      text-decoration: none
+h2
+  @extend .title
+  margin-top: 22px
+  margin-bottom: 7px
+  font-size: 22px
+  a
+    text-decoration: none
+
+h3
+  @extend .title
+  margin-top: 22px
+  margin-bottom: 7px
+  font-size: 18px
+  a
+    text-decoration: none
 
 hr
   border: none
