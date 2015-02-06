@@ -160,7 +160,7 @@ The [firmware][] is available on Github.
 
 [firmware]: https://github.com/whitequark/50w-modular-psu/tree/master/firmware-maple
 
-The firmware currently includes a frequency generator with resolution of 1/72MHz resolution
+The firmware currently includes a frequency generator with 1/72MHz pulse width resolution
 and ADC readout with averaging. The ADC readout is performed in phase lock with the frequency
 output so as to avoid switching at the same time as ADC sampling.
 
