@@ -156,7 +156,9 @@ Test and measurement
 --------------------
 
 A simple testing rig was assembled using an [Iteadmaple][] and [Color LCD shield][colorlcd].
-The firmware is available on Github.
+The [firmware][] is available on Github.
+
+[firmware]: https://github.com/whitequark/50w-modular-psu/tree/master/firmware-maple
 
 The firmware currently includes a frequency generator with resolution of 1/72MHz resolution
 and ADC readout with averaging. The ADC readout is performed in phase lock with the frequency
