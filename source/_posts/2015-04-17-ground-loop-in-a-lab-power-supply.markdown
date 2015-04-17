@@ -10,7 +10,7 @@ categories:
 
 Today, I decided to finally plug in my instruments properly, and plugged both
 my cheap lab PSU (ARKSEN 303D) and oscilloscope into sockets on the same strip
-with real ground plugs. After connecting the scope ground with the PSU negative rail,
+with real ground prongs. After connecting the scope ground with the PSU negative rail,
 it quickly became clear that something's wrong, because the wire connecting them
 went white-hot and sort of caught fire.
 
