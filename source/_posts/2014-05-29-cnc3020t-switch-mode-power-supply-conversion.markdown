@@ -37,8 +37,10 @@ black permanent marker
 Components
 ----------
 
-110V-220V/24V 2A power supply
+<del>110V-220V/24V 2A power supply</del>
 : [LIHUA-48W][24v]
+
+**Update 2015-09-23**: I've received reports that all three motors draw ~2.4A at full speed, so it is advisable to use a power supply rated for at least 3A.
 
 110V-220V/48V 5A power supply
 : [Meanwell S-240-48][48v]
