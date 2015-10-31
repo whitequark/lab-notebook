@@ -13,6 +13,9 @@ group :development do
   gem 'rb-fsevent', '~> 0.9'
   gem 'stringex', '~> 1.4.0'
   gem 'micro_magick', '~> 0.0.7'
+
+  gem 'execjs', '~> 2.6.0'
+  gem 'duktape'
 end
 
 gem 'sinatra', '~> 1.4.2'
