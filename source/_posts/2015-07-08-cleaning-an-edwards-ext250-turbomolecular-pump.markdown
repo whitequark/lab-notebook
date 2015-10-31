@@ -21,6 +21,8 @@ I've bought some freon, HCFC-141b---it's technically a refrigerant, but its most
 
 Then, I've took all furniture (screws, oilpan cover, etc) off the pump, except I did not take the rotor off. (It's not necessary, and it's far too easy to screw up.) I've cleaned the furniture in an ultrasound bath using some kind of proprietary basic detergent.
 
+**Update 2015-11-01**: it is actually fairly simple to take the rotor off on the Edwards EXT250 pump, as it is made from a single piece of aluminium and thus there is no way to mess up balancing.
+
 The pump having all of its orifices open, I've flushed the bulk of the oil by pouring copious amounts of HCFC-141b into it. (Don't be me and don't let it go to the floor when it pours out---it will carry the forepump oil and that oil will be nigh impossible to get off the floor.)
 
 After that, I've covered most of the orifices back, filled it with HCFC-141b and shaked it for a minute or two. Then, I have let the solvent escape. I have repeated this several times.
