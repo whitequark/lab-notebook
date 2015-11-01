@@ -22,7 +22,7 @@ In this note I demonstrate how to reliably print labels on a TM-T88IV.
 Tools
 -----
 
-3D printer
+FDM 3D printer
 : (contracted out)
 
 Materials
