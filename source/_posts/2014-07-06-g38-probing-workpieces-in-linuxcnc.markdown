@@ -41,6 +41,9 @@ Merge the following with your LinuxCNC config (at `~/linuxcnc/machinename/`):
 {% codeblock machinename.ini %}
 [DISPLAY]
 PYVCP = custompanel.xml
+
+[HAL]
+POSTGUI_HALFILE = custom_postgui.hal
 {% endcodeblock %}
 
 {% codeblock custom_postgui.hal lang:text %}
