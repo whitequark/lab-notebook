@@ -4,7 +4,6 @@ title: "Parametric G-Code for cutting PCBs"
 date: 2014-02-12 22:36:23 +0400
 comments: true
 categories:
-  - hardware
   - cnc
   - pcb
 ---

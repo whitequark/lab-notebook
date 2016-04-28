@@ -4,7 +4,7 @@ title: "CNC3020T: EMC2 configuration and hidden features"
 date: 2014-02-12 18:42:46 +0400
 comments: true
 categories:
-  - hardware
+  - electronics
   - cnc
   - cnc3020t
 ---

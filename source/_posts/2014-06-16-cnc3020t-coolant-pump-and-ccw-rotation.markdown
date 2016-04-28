@@ -4,7 +4,7 @@ title: "CNC3020T: coolant pump and CCW rotation"
 date: 2014-06-16 00:27:35 +0400
 comments: true
 categories:
-  - hardware
+  - electronics
   - cnc
   - cnc3020t
 ---

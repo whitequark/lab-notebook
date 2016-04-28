@@ -4,7 +4,7 @@ title: "MOSFET-based Gouriet-Clapp capacitive three-point oscillator"
 date: 2014-11-30 17:15:52 +0300
 comments: true
 categories:
-  - hardware
+  - electronics
   - high voltage
   - vacuum
 ---

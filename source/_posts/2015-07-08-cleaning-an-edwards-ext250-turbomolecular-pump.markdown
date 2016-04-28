@@ -4,7 +4,6 @@ title: "Cleaning an Edwards EXT250 turbomolecular pump"
 date: 2015-07-08 11:09:24 +0300
 comments: true
 categories:
-  - hardware
   - repair
   - vacuum
 ---

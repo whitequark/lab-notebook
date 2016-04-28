@@ -4,7 +4,8 @@ title: "Printing labels on Epson TM-T88IV"
 date: 2015-11-01 03:50:49 +0300
 comments: true
 categories:
-  - hardware
+  - electronics
+  - mechanics
 ---
 
 Epson TM-T88 is a series of thermal receipt printers that are very common and

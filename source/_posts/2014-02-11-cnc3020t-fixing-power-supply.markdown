@@ -3,7 +3,7 @@ layout: post
 title: "CNC3020T: fixing power supply"
 date: 2014-02-11 07:49:00 +0400
 categories:
- - hardware
+ - electronics
  - repair
  - cnc
  - cnc3020t

@@ -4,7 +4,7 @@ title: "Ground loop in a lab power supply"
 date: 2015-04-17 21:55:12 +0300
 comments: true
 categories:
-  - hardware
+  - electronics
   - repair
 ---
 

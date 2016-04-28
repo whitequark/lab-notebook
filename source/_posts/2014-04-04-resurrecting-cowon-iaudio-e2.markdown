@@ -4,7 +4,7 @@ title: "Resurrecting Cowon iAUDIO E2"
 date: 2014-04-04 20:15:45 +0400
 comments: true
 categories:
-  - hardware
+  - electronics
   - repair
 ---
 

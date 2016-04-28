@@ -4,7 +4,7 @@ title: "Measuring diode recovery time"
 date: 2015-01-03 07:03:23 +0300
 comments: true
 categories:
-  - hardware
+  - electronics
   - measurement
 ---
 

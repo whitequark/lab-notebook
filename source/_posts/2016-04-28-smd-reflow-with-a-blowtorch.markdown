@@ -4,6 +4,7 @@ title: "SMD reflow with a blowtorch"
 date: 2016-04-28 02:53:36 +0000
 comments: true
 categories:
+  - electronics
   - insanity
 ---
 

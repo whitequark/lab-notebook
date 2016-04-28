@@ -4,7 +4,7 @@ title: "50W LC resonant converter, power board V1"
 date: 2015-02-06 16:54:43 +0300
 comments: true
 categories:
-  - hardware
+  - electronics
   - power supplies
   - instrumentation
   - process control

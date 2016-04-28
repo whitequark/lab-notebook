@@ -4,7 +4,7 @@ title: "CNC3020T: switch-mode power supply conversion"
 date: 2014-05-29 02:30:33 +0400
 comments: true
 categories:
-  - hardware
+  - electronics
   - repair
   - cnc
   - cnc3020t

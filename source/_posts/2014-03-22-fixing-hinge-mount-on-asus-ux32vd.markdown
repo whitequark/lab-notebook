@@ -4,7 +4,7 @@ title: "Fixing hinge mount on ASUS UX32VD"
 date: 2014-03-22 12:32:36 +0400
 comments: true
 categories:
-  - hardware
+  - mechanics
   - cnc
   - repair
   - ux32vd
