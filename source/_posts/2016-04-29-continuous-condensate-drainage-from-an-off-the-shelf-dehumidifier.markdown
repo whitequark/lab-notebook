@@ -66,7 +66,7 @@ Incidentally, it's very easy to see all the important parts. From left to right,
 
 The liquid line is wrapped in insulating putty in several places where it contacts the plastic, lest it would melt it; freon at the compressor outlet can be as hot as 80°C during normal operation. The gas line returning to the compressor is wrapped in insulating foam to prevent water condensing around it.
 
-A vertical compressor is chosen instead of a horizontal one used in most fridges because it is much quieter due to its radially symmetrical internal construction.
+A vertical compressor is chosen instead of a horizontal one used in most fridges because it is much quieter due to its symmetric mode of operation.
 
 Modification
 ------------
