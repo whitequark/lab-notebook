@@ -84,6 +84,18 @@ nav.secondary .active {
   color: #f44336
 }
 
+footer {
+  background-color: #e4e4e4;
+  color: #434343;
+  text-align: center;
+}
+
+footer .inner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px 10px;
+}
+
 /* Content layout */
 #content {
   max-width: 800px;
@@ -135,6 +147,15 @@ article header .tags li:not(:last-child):after {
 
 article header .tags li:last-child:after {
   content: '.';
+}
+
+hr {
+  border: 1.5px solid #ccc;
+  margin-bottom: 8px;
+}
+
+.contact-me {
+  font-style: italic;
 }
 
 /* Article elements */
