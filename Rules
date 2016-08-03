@@ -17,9 +17,12 @@ preprocess do
     @items.create("", { items: items.map(&:identifier) }, "/notes/#{tag}.html")
   end
   @items.create("", { items: articles.map(&:identifier) }, "/index.html")
+
+  @items.create("", { items: items.select { |i| i[:kind] == "draft" }.map(&:identifier) },
+                "/drafts.html")
 end
 
-compile '/notes/*.md' do
+compile '/{notes,drafts}/*.md' do
   filter :erb
   filter :kramdown
   filter :colorize_syntax, coderay: {
@@ -32,7 +35,7 @@ compile '/notes/*.md' do
   filter :typogruby
 end
 
-compile '/{index.html,notes/*.html}' do
+compile '/{index.html,drafts.html,notes/*.html}' do
   filter :erb
   layout '/category.*'
   layout '/default.*'

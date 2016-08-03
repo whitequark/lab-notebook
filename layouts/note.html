@@ -1,14 +1,20 @@
     <div id="content">
       <article>
         <header>
+          <% if @item[:kind] == "draft" %>
+          <time datetime="<%= Time.now %>">Draft</time>
+          <% else %>
           <time datetime="<%= @item[:created_at] %>"><%= @item[:created_at].to_date %></time>
+          <% end %>
           <h1><%= @item[:title] %></h1>
+          <% if @item[:tags].any? %>
           Tags:
           <ul class="tags">
             <% @item[:tags].each do |tag| %>
             <li><a rel="tag" href="/notes/<%= as_slug tag %>"><%= tag %></a></li>
             <% end %>
           </ul>
+          <% end %>
         </header>
 
         <section>

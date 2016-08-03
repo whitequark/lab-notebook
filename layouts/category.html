@@ -22,7 +22,11 @@
           each do |item| %>
       <article>
         <header>
+          <% if item[:kind] == "draft" %>
+          <time datetime="<%= Time.now %>">Draft</time>
+          <% else %>
           <time datetime="<%= item[:created_at] %>"><%= item[:created_at].to_date %></time>
+          <% end %>
           <h1><%= link_to item[:title], item %></h1>
         </header>
       </article>
