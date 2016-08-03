@@ -15,7 +15,7 @@ run do |opts, args, cmd|
   end
   title, = *args
 
-  title_slug = title.downcase.gsub(/[^a-z0-9]/, '-')
+  title_slug = title.downcase.gsub(/[^a-z0-9]/, '-').gsub(/-+/, '-')
   draft_path = File.join(File.dirname(__FILE__), '..', 'content', 'drafts', title_slug + '.md')
   if File.exists?(draft_path)
     puts "Refusing to overwrite an existing draft."

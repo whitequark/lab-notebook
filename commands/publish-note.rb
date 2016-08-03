@@ -15,7 +15,7 @@ run do |opts, args, cmd|
   end
   title, = *args
 
-  draft_slug  = title.downcase.gsub(/[^a-z0-9]/, '-')
+  draft_slug  = title.downcase.gsub(/[^a-z0-9]/, '-').gsub(/-+/, '-')
   draft_path  = File.join(File.dirname(__FILE__), '..', 'content', 'drafts', draft_slug + '.md')
   public_slug  = Date.today.to_s + '-' + draft_slug
   public_path = File.join(File.dirname(__FILE__), '..', 'content', 'notes', public_slug + '.md')
