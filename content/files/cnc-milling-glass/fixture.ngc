@@ -1,0 +1,93 @@
+( Helix-mill a hole. )
+( Assumes metric, XY plane, feedrate, and tool compensation are set. )
+
+O<helix_mill> sub
+  #<xcenter> = #1 ( [mm] X center         )
+  #<ycenter> = #2 ( [mm] Y center         )
+  #<radius>  = #3 ( [mm] Hole radius      )
+  #<zstart>  = #4 ( [mm] Z start position )
+  #<zend>    = #5 ( [mm] Z end position   )
+
+  G0 X[ #<xcenter> - #<radius> ] Y#<ycenter>
+
+  G0 Z#<zstart>
+  #<znow> = #<zstart>
+
+  ( Mill out body with several full helical turns )
+  O100 while [ #<znow> GT [ #<zend> + #<_zstep> ] ]
+
+    #<znow> = [ #<znow> - #<_zstep> ]
+    G2 I#<radius> J0 Z#<znow>
+
+  O100 endwhile
+
+  G2 I#<radius> J0 Z#<zend>
+
+  ( Flat out the bottom )
+  G2 I#<radius> J0
+
+O<helix_mill> endsub
+
+( --- BEGIN CONFIGURATION --- )
+
+( 1.6mm cylindrical cutter )
+T60 M6 S4000 F400
+
+#<_zsafe>       = 10. ( Safe Z               [mm] )
+#<_zstep>       = 1.  ( Pocketing Z step     [mm] )
+#<_thickness>   = 3.  ( Acrylic thickness    [mm] )
+
+( --- END CONFIGURATION --- )
+
+( Metric, Absolute, XY plane )
+G21 G90 G17
+
+( Spindle on, Coolant on )
+M3 M8
+
+( Dwell for 2s )
+G4 P2
+
+G0 Z#<_zsafe>
+G0 X0 Y0
+
+( Holes )
+G42
+O<helix_mill> call [30.] [0.] [5.5 / 2] [0.] [-#<_thickness>]
+G0 Z#<_zsafe>
+O<helix_mill> call [0.] [0.] [5.5 / 2] [0.] [-#<_thickness>]
+G0 Z#<_zsafe>
+O<helix_mill> call [0.] [150.] [5.5 / 2] [0.] [-#<_thickness>]
+G0 Z#<_zsafe>
+O<helix_mill> call [30.] [150.] [5.5 / 2] [0.] [-#<_thickness>]
+G40
+G0 Z#<_zsafe>
+
+( Outline )
+O<outline> sub
+  Z#1
+  X-15 Y-15
+       Y165
+  X45
+       Y135
+  X15
+       Y[135 - 125 + 0.9] ; glass edge size, corrected for mill error
+  X45
+       Y-15
+  X-15
+O<outline> endsub
+
+#<znow> = -#<_zstep>
+G41
+G0 X-15 Y[-15 - #5410]
+G1
+O100 while [ #<znow> GT -#<_thickness> ]
+  O<outline> call [#<znow>]
+  #<znow> = [ #<znow> - #<_zstep> ]
+O100 endwhile
+O<outline> call [-#<_thickness>]
+
+G40
+G0 Z#<_zsafe>
+
+M2

@@ -1,0 +1,110 @@
+; Mill out half-lens surface
+O<half> sub
+  #<rnow> = 0.01
+  #<znow> = 0
+  G0 X-#5410 Y0
+  G0 Z0
+
+  O100 while [#<znow> GE -[#<_thickness> - #<_edge_thick>]]
+    G1 Z#<znow>
+
+    G1 X[-#<rnow>]
+    G2 I#<rnow>
+
+    #<rnow> = [#<rnow> + #<_eps>]
+    #<znow> = [-[#<_scale> * #<rnow> * #<rnow> ]]
+  O100 endwhile
+
+  G0 Z#<_zsafe>
+
+O<half> endsub
+
+; Cut-out
+O<cutout> sub
+  G0 X-#<_radius> Y0
+  G0 Z0
+  G1 Z-#<_thickness>
+  G2 I#<_radius>
+  G0 Z#<_zsafe>
+O<cutout> endsub
+
+; Mill out lens body
+O<body> sub
+  G0 X-#<_radius> Y0
+  G0 Z0
+  G2 I#<_radius> Z-#<_thickness> P[#<_thickness> / #<_step>]
+  G2 I#<_radius>
+  G0 Z#<_zsafe>
+O<body> endsub
+
+; Half-lens toplevel
+O<halflens> sub
+  M3
+  F800
+  O<half> call
+  F400
+  O<cutout>  call
+  M5
+O<halflens> endsub
+
+; Lens body toplevel
+O<lensbody> sub
+  M3
+  F400
+  O<body> call
+  M5
+O<lensbody> endsub
+
+; Offset G55 coordinate system based on G54
+O<translate> sub
+  #<dx> = #1
+  #<dy> = #2
+
+  G10 L2 P2 X[#5221 + #<dx>] Y[#5222 + #<dy>] Z#5223 R#5230
+
+O<translate> endsub
+
+; Metric, Absolute, XY plane
+G21 G90 G17
+
+; Safe Z level (above workpiece)
+#<_zsafe>      = 25.
+
+; Workpiece parameters
+#<_thickness>  = 3.0  ; [mm] Full material thickness
+#<_edge_thick> = 0.3  ; [mm] Thickness at edge
+#<_step>       = 0.3  ; [mm] Helical milling step
+#<offset>      = 5.0  ; [mm] Offset between different parts
+
+; Lens parameters
+#<_eps>        = 0.05 ; [mm] Horizontal milling step
+#<_scale>      = 0.01 ; y = #<_scale> * x^2
+
+#<_radius>     = sqrt[[#<_thickness> - #<_edge_thick>] / #<_scale>]
+
+; Initialize
+G54
+G0 X0 Y0 Z#<_zsafe>
+G55
+
+; 1mm cylindrical diamond-cut endmill
+; Feeds/speeds for milling acrylic. Use flood coolant!
+S7000 G43 T1 M6
+
+; First half-lens
+O<translate> call [0] [-[2 * #<_radius> + #<offset>]]
+O<halflens>  call
+
+; Lens body
+O<translate> call [0] [0]
+O<lensbody>  call
+
+; Second half-lens
+O<translate> call [0] [2 * #<_radius> + #<offset>]
+O<halflens>  call
+
+; Finalize
+G54
+G0 Z#<_zsafe>
+
+M2

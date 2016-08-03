@@ -1,0 +1,30 @@
+    <nav class="secondary">
+      <ul>
+        <li><h1>By year:</h1></li>
+        <li><%= link_to_unless_current "2014", "/notes/2014/" %></li>
+        <li><%= link_to_unless_current "2015", "/notes/2015/" %></li>
+        <li><%= link_to_unless_current "2016", "/notes/2016/" %></li>
+      </ul>
+
+      <ul>
+        <li><h1>By tag:</h1></li>
+        <% articles.flat_map { |a| a[:tags] }.sort.uniq.each do |tag| %>
+        <li><%= link_to_unless_current tag, "/notes/#{as_slug tag}/" %></li>
+        <% end %>
+      </ul>
+    </nav>
+
+    <div id="content">
+      <% @item[:items].
+          map { |n| @items[n] }.
+          sort_by { |i| i[:created_at] }.
+          reverse.
+          each do |item| %>
+      <article>
+        <header>
+          <time datetime="<%= item[:created_at] %>"><%= item[:created_at].to_date %></time>
+          <h1><%= link_to item[:title], item %></h1>
+        </header>
+      </article>
+      <% end %>
+    </div>

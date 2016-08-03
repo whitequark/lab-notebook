@@ -1,0 +1,18 @@
+    <div id="content">
+      <article>
+        <header>
+          <time datetime="<%= @item[:created_at] %>"><%= @item[:created_at].to_date %></time>
+          <h1><%= @item[:title] %></h1>
+          Tags:
+          <ul class="tags">
+            <% @item[:tags].each do |tag| %>
+            <li><a rel="tag" href="/notes/<%= as_slug tag %>"><%= tag %></a></li>
+            <% end %>
+          </ul>
+        </header>
+
+        <section>
+          <%= yield %>
+        </section>
+      </article>
+    </div>

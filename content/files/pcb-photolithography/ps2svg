@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -e
+
+if [ -z "$1" ]; then
+	echo "Usage: $0 <in.ps> [out.svg]" >&2
+	exit 1
+fi
+
+ps2pdf "$1" "$1.pdf"
+
+if [ -z $2 ]; then
+	pdf2svg "$1.pdf" "$(basename $1 .ps).svg"
+else
+	pdf2svg "$1.pdf" "$2"
+fi
+
+rm "$1.pdf"

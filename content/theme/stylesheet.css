@@ -1,0 +1,282 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fdfcfb;
+  font-family: sans;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px solid;
+}
+
+a:link, a:visited {
+  color: #3f51b5;
+}
+
+a:hover {
+  color: #03a9f4;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+img {
+  width: 100%;
+  padding-top: 10px;
+}
+
+/* Navigation bars */
+nav {
+  padding: 5px 0;
+}
+
+nav ul {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 10px;
+  list-style-type:none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+nav li {
+  margin: 0 5px;
+  line-height: 28px;
+}
+
+nav.primary {
+  background-color: #aa1409;
+}
+
+nav.primary .spacer {
+  flex-grow: 1;
+  order: 0;
+}
+
+nav.primary h1 {
+  font-size: 22px;
+}
+
+nav.primary a:link, nav.primary a:visited {
+  color: #efeae1;
+}
+
+nav.primary a:hover {
+  color: #ffc107;
+}
+
+nav.secondary {
+  background-color: #e4e4e4;
+}
+
+nav.secondary h1 {
+  color: #434343;
+  font-size: 18px;
+}
+
+nav.secondary .active {
+  color: #f44336
+}
+
+/* Content layout */
+#content {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 10px;
+}
+
+/* Articles */
+article header {
+  margin-bottom: 20px;
+}
+
+article header h1 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+article header time {
+  line-height: 33px;
+  vertical-align: baseline;
+  font-size: 20px;
+  color: #444;
+}
+
+@media (max-width: 1060px) {
+  article header time {
+    float: right;
+  }
+}
+
+@media (min-width: 1060px) {
+  article header time {
+    float: left;
+    margin-left: -130px;
+  }
+}
+
+article header .tags {
+  display: inline;
+}
+
+article header .tags li {
+  display: inline;
+}
+
+article header .tags li:not(:last-child):after {
+  content: ', ';
+}
+
+article header .tags li:last-child:after {
+  content: '.';
+}
+
+/* Article elements */
+#markdown-toc:before {
+  content: 'Table of Contents';
+  font-weight: bold;
+}
+
+#markdown-toc {
+  float: right;
+  list-style: none;
+  border: 1px solid #ccc;
+  padding: 13px;
+}
+
+#markdown-toc li {
+  padding: 2px 0;
+  margin: 0;
+}
+
+.fancybox, .fancybox-overlay a {
+  border: none;
+}
+
+.fancybox img {
+  width: initial;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 3px;
+}
+
+.fancybox:first-child {
+  margin-left: -1em; /* cancel p {text-indent} */
+}
+
+figcaption {
+  text-align: center;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  padding: 2px;
+  color: #444;
+}
+
+figure img {
+  padding: 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background-color: #f8f8f8;
+  padding: 2px;
+}
+
+.CodeRay {
+  overflow-x: auto;
+}
+
+.CodeRay table {
+  border: 1px solid #ccc;
+}
+
+.CodeRay td.line-numbers {
+  text-align: right;
+  border-right: 1px solid #ddd;
+  color: #444;
+  width: 1em;
+}
+
+.CodeRay td.code {
+  background-color: #fdfcfb;
+}
+
+.CodeRay td.code pre {
+  padding-left: 10px;
+}
+
+.CodeRay code {
+  border: none;
+  padding: 0;
+}
+
+section p {
+  margin-bottom: 0.7em;
+  text-indent: 1em;
+  line-height: 22px;
+}
+
+section h1, section h2, section h3, section h4, section h5, section h6 {
+  margin-top: 1.2em;
+  margin-bottom: 0.6em;
+}
+
+section ul, section ol {
+  margin-left: 1.5em;
+  line-height: 22px;
+}
+
+section li {
+  margin-bottom: 0.7em;
+}
+
+section dl {
+  margin: 0 0 0.5em 0;
+}
+
+section dt {
+  font-weight: bold;
+}
+
+section dd {
+  margin-left: 1.5em;
+  margin-bottom: 10px;
+}
+
+section table {
+  padding-bottom: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+th {
+  background-color: #fcd2cf;
+  color: #444;
+  font-weight: bold;
+}
+
+td {
+  background-color: #f4f4f4;
+}
+
+th, td, caption {
+  padding: 4px 10px 4px 5px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+span.overline {
+  border-top: 1px solid;
+}

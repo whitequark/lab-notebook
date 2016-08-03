@@ -1,0 +1,118 @@
+; This G-code program probes a cube and sets the current coordinate
+; system so that it is centered at the face and Z is zero at highest point.
+; The variable #5190 is set to edge length, and #5191 is set to the Z difference
+; between highest and lowest point.
+;
+; This script should be invoked twice.
+; At first invocation, tool should be positioned by XY within #<_delta> of
+; nearer left corner. The corner will be found. At second invocation, tool
+; should be positioned by XYZ within 5mm of farther right corner above surface.
+; The corner will be found, and surface will be probed at five points.
+;
+; G-code wise, current tool length and diameter are used, and current
+; coordinate system is adjusted.
+;
+; Reset #5199 to 0 to re-run first step.
+
+G21 G91 G17 ; Metric, Incremental, XY plane
+G43         ; Length compensation on
+F50         ; Probing feedrate
+
+#<_delta> = 8.0 ; [mm]
+
+; O<max> call [N] [V1] ... computes maximum of N>=1 values Vn and
+; returns it in #31.
+O<max> sub
+  #31 = #2
+  O10 if [ #1 GT 1 ]
+    O20 if [ #[#1+1] GT #31 ]
+      #31 = #[#1+1]
+    O20 endif
+    #1 = [ #1 - 1 ]
+  O10 endif
+O<max> endsub
+
+; O<min> call [N] [V1] ... computes minimum of N>=1 values Vn and
+; returns it in #31.
+O<min> sub
+  #31 = #2
+  O10 if [ #1 GT 1 ]
+    O20 if [ #[#1+1] LT #31 ]
+      #31 = #[#1+1]
+    O20 endif
+    #1 = [ #1 - 1 ]
+  O10 endif
+O<min> endsub
+
+O100 if [ #5199 EQ 0 ]
+  ; first invocation
+
+  ; probe X and return
+  G0    Y#<_delta>
+  G38.2 X#<_delta>
+  G10 L20 P#5220 X[-#5410/2]
+  G0    X[-#<_delta>/2]
+  G0    Y-#<_delta>
+
+  ; probe Y and return
+  G0    X#<_delta>
+  G38.2 Y#<_delta>
+  G10 L20 P#5220 Y[-#5410/2]
+  G0    Y[-#<_delta>/2]
+  G0    X-#<_delta>
+
+  ; results
+  #5199 = 1
+  (msg,Position next to far right corner and restart)
+O100 else
+  ; second invocation
+
+  ; probe X and return
+  G0    Y-#<_delta>
+  G38.2 X-#<_delta>
+  #<xsize> = [#5420-#5410/2] (debug,X size: #<xsize>)
+  G10 L20 P#5220 X[#<xsize>/2 + #5410/2]
+  G0    X[#<_delta>/2]
+  G0    Y#<_delta>
+
+  ; probe Y and return
+  G0    X-#<_delta>
+  G38.2 Y-#<_delta>
+  #<ysize> = [#5421-#5410/2] (debug,Y size: #<ysize>)
+  G10 L20 P#5220 Y[#<ysize>/2 + #5410/2]
+  G0    Y[#<_delta>/2]
+  G0    X#<_delta>
+
+  ; record size
+  #5190 = [ [#<xsize> + #<ysize>] / 2 ]
+
+  ; probe surface
+  O<120> sub
+    G90 G0 X#1 Y#2
+    G91 G38.2 Z-#<_delta>
+    #[#3] = #5063
+    G0 Z[#<_delta> / 2]
+  O<120> endsub
+
+  G0 Z#<_delta>
+  O<120> call [-[#5190/2-#<_delta>/2]] [-[#5190/2-#<_delta>/2]] [100]
+  O<120> call [-[#5190/2-#<_delta>/2]] [+[#5190/2-#<_delta>/2]] [101]
+  O<120> call [+[#5190/2-#<_delta>/2]] [+[#5190/2-#<_delta>/2]] [102]
+  O<120> call [+[#5190/2-#<_delta>/2]] [-[#5190/2-#<_delta>/2]] [103]
+  O<120> call [0]                     [0]                     [104]
+
+  ; calculate
+  O<max> call [5] [#100] [#101] [#102] [#103] [#104]
+  G10 L20 P#5220 Z[#104 - #31 + #<_delta>/2]
+  #<max> = #31
+
+  O<min> call [5] [#100] [#101] [#102] [#103] [#104]
+  #5191 = [ abs[#<max> - #31] ]
+  (debug,Probe OK. Cube L=#5190mm, dZ=#5191mm)
+
+  ; finalize
+  #5199 = 0
+  G90
+O100 endif
+
+M2

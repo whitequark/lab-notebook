@@ -1,0 +1,73 @@
+#!/usr/bin/env ruby
+
+preprocess do
+  by_tag  = Hash.new { |h,k| h[k] = [] }
+  by_year = Hash.new { |h,k| h[k] = [] }
+  articles.each do |item|
+    by_year[item[:created_at].year] << item
+    item[:tags].each do |tag|
+      by_tag[as_slug(tag)] << item
+    end
+  end
+
+  by_year.each do |year, items|
+    @items.create("", { items: items.map(&:identifier) }, "/notes/#{year}.html")
+  end
+  by_tag.each do |tag, items|
+    @items.create("", { items: items.map(&:identifier) }, "/notes/#{tag}.html")
+  end
+  @items.create("", { items: articles.map(&:identifier) }, "/index.html")
+end
+
+compile '/notes/*.md' do
+  filter :erb
+  filter :kramdown
+  filter :colorize_syntax, coderay: {
+    line_numbers: :table,
+    line_number_anchors: nil,
+    bold_every: false,
+  }
+  layout '/note.*'
+  layout '/default.*'
+  filter :typogruby
+end
+
+compile '/{index.html,notes/*.html}' do
+  filter :erb
+  layout '/category.*'
+  layout '/default.*'
+  filter :typogruby
+end
+
+compile '/images/**/*.{jpeg,png}', rep: :thumbnail do
+  filter :resize_image, size: 200
+end
+
+compile '/**/*.xml' do
+  filter :erb
+end
+
+compile '/**/*' do
+end
+
+route %r{/notes/(\d{4}-\d{2}-\d{2})-(.+).md} do |date, name|
+  "/notes/#{date}/#{name}/index.html"
+end
+
+route '/**/*.{html,md}' do
+  if item.identifier =~ '/index.*'
+    '/index.html'
+  else
+    item.identifier.without_ext + '/index.html'
+  end
+end
+
+route '/images/**/*', rep: :thumbnail do
+  item.identifier.without_ext + '-thumb.' + item.identifier.ext
+end
+
+route '/**/*' do
+  item.identifier.to_s
+end
+
+layout '/**/*', :erb

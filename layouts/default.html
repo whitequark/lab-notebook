@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title><%= @config[:title] %> - <%= @item[:title] %></title>
+    <meta name="author" content="<%= @config[:author_name] %>">
+    <meta name="generator" content="Nanoc <%= Nanoc::VERSION %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="/theme/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="/theme/coderay.css">
+    <link rel="stylesheet" type="text/css" href="/theme/jquery.fancybox-2.1.5.css">
+    <link href="/atom.xml" rel="alternate" title="<%= @config[:title] %>" type="application/atom+xml">
+
+    <script type="text/javascript" src="/theme/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="/theme/jquery.fancybox-2.1.5.min.js"></script>
+    <script type="text/javascript">
+      $(".fancybox").fancybox();
+    </script>
+
+    <% if @item[:has_solvespace] %>
+    <script type="text/javascript" src="/theme/three-r76.js"></script>
+    <script type="text/javascript" src="/theme/hammer-2.0.8.js"></script>
+    <script type="text/javascript" src="/theme/SolveSpaceControls.js"></script>
+    <script type="text/javascript" src="/theme/SolveSpace.js"></script>
+    <% end %>
+  </head>
+
+  <body>
+    <nav class="primary">
+      <ul>
+        <li><a href="/"><h1>whitequark's lab notebook</h1></a></li>
+        <li class="spacer"></li>
+        <li><a href="/atom.xml">Atom feed</a></li>
+        <li><a href="mailto:whitequark@whitequark.org">E-mail</a></li>
+        <li><a href="http://twitter.com/whitequark" target="blank">Twitter</a></li>
+        <li><a href="http://github.com/whitequark" target="blank">GitHub</a></li>
+      </ul>
+    </nav>
+
+    <%= yield %>
+  </body>
+</html>

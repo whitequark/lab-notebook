@@ -1,0 +1,198 @@
+; === HELICAL MILLING ===
+
+; Helix-mill a hole with pecking.
+; Assumes metric, XY plane, feedrate, and tool compensation are set.
+O<helix_mill> sub
+  #<xcenter> = #1 ; [mm] X center
+  #<ycenter> = #2 ; [mm] Y center
+  #<radius>  = #3 ; [mm] Hole radius
+  #<zstart>  = #4 ; [mm] Z start position
+  #<zend>    = #5 ; [mm] Z end position
+
+  G0 X[ #<xcenter> - #<radius> ] Y#<ycenter>
+
+  G0 Z#<zstart>
+  #<znow> = #<zstart>
+
+  ; Mill out body with several full helical turns
+  O100 while [ #<znow> GT [ #<zend> + #<_zstep> ] ]
+
+    #<znow> = [ #<znow> - #<_zstep> ]
+    G2 I#<radius> J0 Z#<znow>
+
+    ; Peck
+    G0 Z#<zstart>
+    G0 Z#<znow>
+
+  O100 endwhile
+
+  G2 I#<radius> J0 Z#<zend>
+
+  ; Peck
+  G0 Z#<zstart>
+  G0 Z#<zend>
+
+  ; Flat out the bottom
+  G2 I#<radius> J0
+
+O<helix_mill> endsub
+
+; Make one polygonal milling turn.
+; Assumes metric, XY plane, feedrate, and tool compensation are set.
+O<polygon_turn> sub
+  #<xcenter> = #1 ; [mm] X center
+  #<ycenter> = #2 ; [mm] Y center
+  #<radius>  = #3 ; [mm] Hole radius
+  #<zstart>  = #4 ; [mm] Z start position
+  #<zend>    = #5 ; [mm] Z end position
+  #<edges>   = #6 ;      Edge count
+
+  #<zedgestep> = [ [ #<zend> - #<zstart> ] / #<edges> ]
+  #<anglestep> = [ 360.0 / #<edges> ]
+
+  #<znow>      = #<zstart>
+  #<angle>     = 120.
+
+  O100 repeat [ #<edges> ]
+
+    #<znow>  = [ #<znow>  + #<zedgestep> ]
+    G1 X[ #<xcenter> + cos[#<angle>] * #<radius> ] Y[ #<ycenter> + sin[#<angle>] * #<radius> ] Z#<znow>
+    #<angle> = [ #<angle> - #<anglestep> ]
+
+  O100 endrepeat
+
+O<polygon_turn> endsub
+
+; Helix-mill a polygonal hole.
+; Assumes metric, XY plane, feedrate, and tool compensation are set.
+O<polygon_mill> sub
+  #<xcenter> = #1 ; [mm] X center
+  #<ycenter> = #2 ; [mm] Y center
+  #<radius>  = #3 ; [mm] Hole radius
+  #<zstart>  = #4 ; [mm] Z start position
+  #<zend>    = #5 ; [mm] Z end position
+  #<edges>   = #6 ;      Edge count
+
+  G0 X[ #<xcenter> - #<radius> ] Y#<ycenter>
+
+  G0 Z#<zstart>
+  #<znow>  = #<zstart>
+  #<zprev> = #<zstart>
+
+  ; Mill out body with several full helical turns
+  O100 while [ #<znow> GT [ #<zend> + #<_zstep> ] ]
+
+    #<znow>  = [ #<znow> - #<_zstep> ]
+    O<polygon_turn> call [#<xcenter>] [#<ycenter>] [#<radius>] [#<zprev>] [#<znow>] [#<edges>]
+    #<zprev> = #<znow>
+
+  O100 endwhile
+
+  O<polygon_turn> call [#<xcenter>] [#<ycenter>] [#<radius>] [#<zprev>] [#<zend>] [#<edges>]
+
+  ; Flat out the bottom
+  O<polygon_turn> call [#<xcenter>] [#<ycenter>] [#<radius>] [#<zend>] [#<zend>] [#<edges>]
+
+O<polygon_mill> endsub
+
+; === SCREW/NUT POCKETING ===
+
+; Mill a pocket for a nut, part #1 (nut pocket).
+; Assumes metric, XY plane, feedrate, and tool diameter are set.
+O<nut_pocket_1> sub
+  #<xcenter>      = #1 ; [mm] X center
+  #<ycenter>      = #2 ; [mm] Y center
+  #<nut_depth>    = #3 ; [mm] Nut depth
+  #<nut_radius>   = #4 ; [mm] Nut radius
+  #<screw_radius> = #5 ; [mm] Screw radius
+
+  ; Initial positioning
+  G0 X#<xcenter> Y#<ycenter>
+
+  ; Cutter compensation to the right.
+  G42
+
+  ; Make a pocket for nut.
+  #<rnow> = #<nut_radius>
+  O100 while [ #<rnow> GT #<screw_radius> ]
+
+    O<polygon_mill> call [#<xcenter>] [#<ycenter>] [#<rnow>] [0.] [-#<nut_depth>] [6]
+
+    #<rnow> = [ #<rnow> - #5410 * 0.9 ] ; Subtract 90% tool diameter
+
+    G0 Z0.0 ; Get tool up for another plunge
+
+  O100 endwhile
+
+  ; Cleanup.
+  G40
+  G0 Z#<_zsafe>
+
+O<nut_pocket_1> endsub
+
+; Mill a nut pocket, part #2 (screw body pocket).
+; Assumes metric, XY plane, feedrate, and tool diameter are set.
+O<nut_pocket_2> sub
+  #<xcenter>      = #1 ; [mm] X center
+  #<ycenter>      = #2 ; [mm] Y center
+  #<screw_radius> = #3 ; [mm] Screw radius
+  #<thickness>    = #4 ; [mm] Sheet thickness
+
+  #<hole_radius> = [ #<screw_radius> - #5410 / 2 ]
+  O<helix_mill> call [#<xcenter>] [#<ycenter>] [#<hole_radius>] [0] [-#<thickness>]
+
+  ; Cleanup.
+  G0 Z#<_zsafe>
+
+O<nut_pocket_2> endsub
+
+; --- BEGIN CONFIGURATION ---
+
+; Don't forget to set up tool table.
+
+S2000 F250
+
+#<_zsafe>        = 30.  ; [mm] Safe Z
+#<_zstep>        = 3.5  ; [mm] Z step
+
+#<_thickness>    = 13.5 ; [mm] Sheet thickness
+#<_nut_radius>   = 3.95 ; [mm] Nut radius
+#<_nut_depth>    = 7.5  ; [mm] Nut depth
+#<_screw_radius> = 2.   ; [mm] Screw radius
+
+#<_grid_step>    = 30.  ; [mm] Nut grid step
+#<_grid_width>   = 180. ; [mm] Grid width
+#<_grid_length>  = 210. ; [mm] Grid length
+
+; --- END CONFIGURATION ---
+
+G21 G90 G17 ; Metric, Absolute, XY plane
+
+O<grid> sub
+  #<gridx> = 0.
+  O100 while [ #<gridx> LE #<_grid_width> ]
+    #<gridy> = 0.
+    O110 while [ #<gridy> LE #<_grid_length> ]
+      O120 if [ #1 EQ 1 ]
+        O<nut_pocket_1> call [#<gridx>] [#<gridy>] [#<_nut_depth>] [#<_nut_radius>] [#<_screw_radius>]
+      O120 elseif [ #1 EQ 2 ]
+        O<nut_pocket_2> call [#<gridx>] [#<gridy>] [#<_screw_radius>] [#<_thickness>]
+      O120 endif
+      #<gridy> = [ #<gridy> + #<_grid_step> ]
+    O110 endwhile
+    #<gridx> = [ #<gridx> + #<_grid_step> ]
+  O100 endwhile
+O<grid> endsub
+
+G0 Z#<_zsafe>
+T4 M6 G43 ; 1.5mm cylindrical
+M3
+O<grid> call [1]
+
+G0 Z#<_zsafe>
+T2 M6 G43 ; 3.175mm cylindrical
+M3
+O<grid> call [2]
+
+G0 Z#<_zsafe>
+M2
