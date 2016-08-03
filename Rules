@@ -25,11 +25,7 @@ end
 compile '/{notes,drafts}/*.md' do
   filter :erb
   filter :kramdown
-  filter :colorize_syntax, coderay: {
-    line_numbers: :table,
-    line_number_anchors: nil,
-    bold_every: false,
-  }
+  filter :colorize_syntax, default_colorizer: :rouge, rouge: { line_numbers: true }
   layout '/note.*'
   layout '/default.*'
   filter :typogruby

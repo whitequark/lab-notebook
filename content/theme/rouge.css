@@ -1,0 +1,77 @@
+.rouge-code table td { padding: 5px; }
+.rouge-code table pre { margin: 0; }
+.rouge-code, .rouge-code .w {
+  color: #303030;
+}
+.rouge-code .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.rouge-code .c, .rouge-code .cd, .rouge-code .cm, .rouge-code .c1, .rouge-code .cs {
+  color: #505050;
+}
+.rouge-code .cp {
+  color: #ec9213;
+}
+.rouge-code .nt {
+  color: #ec9213;
+}
+.rouge-code .o, .rouge-code .ow {
+  color: #888;
+}
+.rouge-code .p, .rouge-code .pi {
+  color: #888;
+}
+.rouge-code .gi {
+  color: #80974e;
+}
+.rouge-code .gd {
+  color: #ac4142;
+}
+.rouge-code .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.rouge-code .k, .rouge-code .kn, .rouge-code .kp, .rouge-code .kr, .rouge-code .kv {
+  color: #8e5783;
+}
+.rouge-code .kc {
+  color: #d28445;
+}
+.rouge-code .kt {
+  color: #d28445;
+}
+.rouge-code .kd {
+  color: #d28445;
+}
+.rouge-code .s, .rouge-code .sb, .rouge-code .sc, .rouge-code .sd, .rouge-code .s2, .rouge-code .sh, .rouge-code .sx, .rouge-code .s1 {
+  color: #80974e;
+}
+.rouge-code .sr {
+  color: #75b5aa;
+}
+.rouge-code .si {
+  color: #8f5536;
+}
+.rouge-code .se {
+  color: #8f5536;
+}
+.rouge-code .nn {
+  color: #ec9213;
+}
+.rouge-code .nc {
+  color: #ec9213;
+}
+.rouge-code .no {
+  color: #ec9213;
+}
+.rouge-code .na {
+  color: #6a9fb5;
+}
+.rouge-code .m, .rouge-code .mf, .rouge-code .mh, .rouge-code .mi, .rouge-code .il, .rouge-code .mo, .rouge-code .mb, .rouge-code .mx {
+  color: #80974e;
+}
+.rouge-code .ss {
+  color: #80974e;
+}

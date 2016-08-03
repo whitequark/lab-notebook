@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/nanoc/nanoc
-  revision: c8cf3aebaf37a08dcbd140c3617c98d1130ba756
-  specs:
-    nanoc (4.2.4)
-      cri (~> 2.3)
-      hamster (~> 3.0)
-      ref (~> 2.0)
-
-GIT
   remote: https://github.com/whitequark/guard-nanoc
   revision: ad6fdead4fa12a536cc722edcb9eaeb70cde014a
   specs:
@@ -15,6 +6,14 @@ GIT
       guard (~> 2.8)
       guard-compat (~> 1.0)
       nanoc (~> 4.0)
+
+PATH
+  remote: ~/nanoc
+  specs:
+    nanoc (4.2.4)
+      cri (~> 2.3)
+      hamster (~> 3.0)
+      ref (~> 2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -65,6 +64,7 @@ GEM
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     ref (2.0.0)
+    rouge (2.0.5)
     ruby_dep (1.4.0)
     rubypants (0.2.0)
     shellany (0.0.1)
@@ -79,12 +79,12 @@ PLATFORMS
 DEPENDENCIES
   adsf
   builder
-  coderay
   guard-nanoc!
   kramdown
   micro_magick
   nanoc!
   nokogiri
+  rouge
   typogruby
 
 BUNDLED WITH

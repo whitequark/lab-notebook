@@ -211,32 +211,26 @@ code {
   padding: 2px;
 }
 
-.CodeRay {
-  overflow-x: auto;
+pre code {
+  border: none;
+  padding: 0;
 }
 
-.CodeRay table {
+.rouge-table {
+  overflow-x: auto;
   border: 1px solid #ccc;
 }
 
-.CodeRay td.line-numbers {
+.rouge-gutter {
   text-align: right;
   border-right: 1px solid #ddd;
   color: #444;
   width: 1em;
 }
 
-.CodeRay td.code {
+.rouge-code {
   background-color: #fdfcfb;
-}
-
-.CodeRay td.code pre {
   padding-left: 10px;
-}
-
-.CodeRay code {
-  border: none;
-  padding: 0;
 }
 
 section p {
