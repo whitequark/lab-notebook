@@ -187,10 +187,6 @@ hr {
   padding: 3px;
 }
 
-.fancybox:first-child, img:first-child {
-  margin-left: -1em; /* cancel p {text-indent} */
-}
-
 figcaption {
   text-align: center;
   background: #eee;
@@ -224,6 +220,7 @@ pre {
 
 .rouge-table {
   margin: 0;
+  line-height: normal;
 }
 
 .rouge-table pre {
@@ -245,8 +242,11 @@ pre {
 
 section p {
   margin-bottom: 0.7em;
-  text-indent: 1em;
   line-height: 22px;
+}
+
+section > p::first-letter {
+  margin-left: 1em;
 }
 
 section h1, section h2, section h3, section h4, section h5, section h6 {
