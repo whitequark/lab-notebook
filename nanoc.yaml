@@ -3,7 +3,7 @@ title: "whitequark's lab notebook"
 author_name: whitequark
 author_uri: http://lab.whitequark.org/
 
-text_extensions: [ 'html', 'css', 'js', 'xml', 'md', 'ngc' ]
+text_extensions: [ 'html', 'css', 'js', 'xml', 'md', 'ngc', 'rb' ]
 index_filenames: [ 'index.html' ]
 
 output_dir: output

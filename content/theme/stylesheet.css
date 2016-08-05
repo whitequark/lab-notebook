@@ -187,7 +187,7 @@ hr {
   padding: 3px;
 }
 
-.fancybox:first-child {
+.fancybox:first-child, img:first-child {
   margin-left: -1em; /* cancel p {text-indent} */
 }
 
@@ -216,9 +216,19 @@ pre code {
   padding: 0;
 }
 
-.rouge-table {
-  overflow-x: auto;
+pre {
   border: 1px solid #ccc;
+  margin-bottom: 15px;
+  overflow-x: auto;
+}
+
+.rouge-table {
+  margin: 0;
+}
+
+.rouge-table pre {
+  border: none;
+  margin: 0;
 }
 
 .rouge-gutter {
