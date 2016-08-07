@@ -36,9 +36,10 @@ It is not known what Hall sensors exactly are used, but they appear to be of the
 
 [us5881]: https://cdn-shop.adafruit.com/datasheets/US5881_rev007.pdf
 
-The following [Silego SLG46620V][slg46620v] gateware can drive the cryocooler at its maximum speed for the supplied drive voltage:
+The following [Silego SLG46620V][slg46620v] gateware, implemented based on [Microchip AN587][an587] can drive the cryocooler at its maximum speed for the supplied drive voltage:
 
 [slg46620v]: http://www.silego.com/buy/index.php?main_page=product_info&cPath=58&products_id=379
+[an587]: http://ww1.microchip.com/downloads/en/appnotes/00857a.pdf
 
 <% highlight_code 'verilog', 'bldc.v' do %>
 module top(
