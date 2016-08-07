@@ -26,9 +26,9 @@ The pinout is as follows (phases A, B, C are ordered clockwise, looking from the
 | 1     | (none)     | BLDC drive supply |
 | 2     | (none)     | Spreading confusion* |
 | 3     | Blue       | Hall sensor supply |
-| 4     | Yellow     | Phase C |
-| 5     | Orange     | Phase B |
-| 6     | Brown      | Phase A |
+| 4     | Yellow     | Phase A |
+| 5     | Orange     | Phase C |
+| 6     | Brown      | Phase B |
 | 7     | Green      | Ground |
 | U     | Red        | Phase A |
 | V     | White      | Phase B |
@@ -106,9 +106,9 @@ The connections from the SLG46620V to the MOSFETs and sensors are as follows:
 | 6 | V low side driver |
 | 7 | W high side driver |
 | 8 | W low side driver |
-| 14 | 6 |
-| 16 | 5 |
-| 18 | 4 |
+| 14 | 4 |
+| 16 | 6 |
+| 18 | 5 |
 | 1 (supply) | 3 |
 | 11 (ground) | 7 |
 {: style="max-width: 400px"}
@@ -119,19 +119,73 @@ When writing this note I've used [Vishay Si4564DY][si4564] MOSFETs, which seem t
 
 # Phase order
 
-There are three possible mappings of Hall sensor phases to coil phases. The rotor will spin regardless of how good the match is, as it has a fair amount of inertia (in fact, once spinning, it'll keep spinning even if one of the coils is *completely disconnected*). Thus, it is not obvious what the correct mapping is. I've measured the current and natural frequency for all three combinations, at 8 V coil supply:
+There are three possible mappings of Hall sensor phases to coil phases. The rotor will spin regardless of how good the match is, as it has a fair amount of inertia (in fact, once spinning, it'll keep spinning even if one of the coils is *completely disconnected*). Thus, it is not obvious what the correct mapping is. I've measured the natural frequency for all three combinations, at 8 V coil supply:
 
-| Phase mapping | Current | Period |
-|---------------|---------|--------|
-| A:4 B:6 C:5   | 1.2 A   | 19 ms  |
-| A:5 B:4 C:6   | 1.4 A   | 24 ms  |
-| A:6 B:5 C:4   | 1.0 A   | 18 ms  |
+| Phase mapping | Period |
+|---------------|--------|
+| A:4 B:6 C:5   | 19 ms  |
+| A:5 B:4 C:6   | 24 ms  |
+| A:6 B:5 C:4   | 19 ms  |
 {: style="max-width: 400px"}
 
-Interestingly, the waveforms measured at U, W, V differ considerably:
+The waveforms measured at U, W, V differ considerably:
 
 <%= lightbox '/images/ricor-k526s/sensors-465.png', title: 'A:4 B:6 C:5', gallery: 'sensors' %>
 <%= lightbox '/images/ricor-k526s/sensors-546.png', title: 'A:5 B:4 C:6', gallery: 'sensors' %>
 <%= lightbox '/images/ricor-k526s/sensors-654.png', title: 'A:6 B:5 C:4', gallery: 'sensors' %>
 
-It is not immediately obvious to me which phase mapping is "correct" but the one that results in the least amount of current being drawn for the highest frequency seems clearly most useful, so this is the one that is described in the pinout.
+I've also tried stepping the coils using the following gateware:
+
+<% highlight_code 'verilog', 'stepbldc.v' do %>
+module top(
+        (* LOC="P3" *) output uh,
+        (* LOC="P4" *) output ul,
+        (* LOC="P5" *) output vh,
+        (* LOC="P6" *) output vl,
+        (* LOC="P7" *) output wh,
+        (* LOC="P8" *) output wl,
+        (* LOC="P14", PULLUP="10k" *) input us,
+        (* LOC="P16", PULLUP="10k" *) input vs,
+        (* LOC="P18", PULLUP="10k" *) input ws,
+    );
+
+    wire clk;
+    GP_LFOSC #(
+        .AUTO_PWRDN(0)
+    ) lfosc (
+        .CLKOUT(clk)
+    );
+
+    localparam DIVIDER = 400;
+    reg  [13:0] divcnt = DIVIDER;
+    always @(posedge clk)
+        if(divcnt == 0)
+            divcnt <= DIVIDER;
+        else
+            divcnt <= divcnt - 1;
+
+    wire stepclk = (divcnt == 0);
+
+    reg [5:0] drivers;
+    always @(posedge stepclk) begin
+        case({us, vs, ws})
+            3'b101: drivers <= 6'b100100;
+            3'b001: drivers <= 6'b000110;
+            3'b011: drivers <= 6'b010010;
+            3'b010: drivers <= 6'b011000;
+            3'b110: drivers <= 6'b001001;
+            3'b100: drivers <= 6'b100001;
+        endcase
+    end
+
+    wire ui, vi, wi;
+    assign {ui, ul, vi, vl, wi, wl} = drivers;
+
+    // assign {uh, vh, wh} = ~{ui, vi, wi};
+    assign {uh, vh} = ~{ui, vi};
+    GP_2LUT #(.INIT(4'b0001)) lut (.IN0(wi), .OUT(wh));
+
+endmodule
+<% end %>
+
+The mapping A:4 B:6 C:5 runs the fastest, with the waveforms closest to a perfect sine, and steps without unexpected abrupt jumps, so it seems that it is the correct mapping.
