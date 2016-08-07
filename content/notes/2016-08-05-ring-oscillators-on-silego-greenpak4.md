@@ -343,7 +343,7 @@ module top( (*LOC="P4"*) output q0 );
 endmodule
 <% end %>
 
-In theory, this oscillator should have a frequency of 36.2 MHz at 5 V. In practice, it turns out to be... 112 MHz, which is higher than an individual `GP_2LUT` ([bitstream](/files/gp4-ringosc/gp_2lut_x3-bitstream.txt) for this circuit). Say what?! (Update: [I figured it out](/notes/2016-08-05/parasitic-interaction-between-oscillating-luts-on-silego-greenpak-4/))
+In theory, this oscillator should have a frequency of 36.2 MHz at 5 V. In practice, it turns out to be... 112 MHz, which is higher than an individual `GP_2LUT` ([bitstream](/files/gp4-ringosc/gp_2lut_x3-bitstream.txt) for this circuit). Say what?! (**Update**: [I figured it out](/notes/2016-08-05/parasitic-interaction-between-oscillating-luts-on-silego-greenpak-4/))
 
 What if we replace one of those with an inverter?
 
@@ -421,7 +421,9 @@ To summarize:
   * Ring oscillators can be constructed from programmable logic, and the highest frequency possible to achieve this way is ~130 MHz.
   * Ring oscillators made from a single primitive drift with changing supply voltage by ~20 MHz/V; `GP_RINGOSC` is compensated for that.
   * Ring oscillators made from programmable logic produce the same kind of noise as `GP_RINGOSC`; noise is independent of frequency; `GP_2LUT` is an order of magnitude more noisy than `GP_INV` or `GP_RINGOSC`.
-  * The output of high-frequency ring oscillators made from programmable logic has a significant DC bias and they are probably not useful for much.
-  * A loop of three closely located and matched LUTs configured as inverters oscillates at a frequency higher than individual LUTs for an unknown reason. Why? (Update: [I figured it out](/notes/2016-08-05/parasitic-interaction-between-oscillating-luts-on-silego-greenpak-4/))
+  * The output of high-frequency ring oscillators made from programmable logic has a significant DC bias and they are probably not useful for much. **Update:** the [Hacker News thread][hn] mentions that XOR between two ring oscillators could serve as a useful hardware random number generator.
+  * A loop of three closely located and matched LUTs configured as inverters oscillates at a frequency higher than individual LUTs for an unknown reason. Why? (**Update**: [I figured it out](/notes/2016-08-05/parasitic-interaction-between-oscillating-luts-on-silego-greenpak-4/))
 
 I also now have a newfound appreciation of crystal oscillators.
+
+[hn]: https://news.ycombinator.com/item?id=12234179
