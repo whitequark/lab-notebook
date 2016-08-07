@@ -13,7 +13,7 @@ I have a bunch of Ricor K526S cryocoolers. In this note I describe a controller 
 
 Electrically speaking, a K526S cryocooler is simply a BLDC motor with Hall sensors. It is very easy to drive one, and the most complicated part is determining the pinout. Here is the interposer board it has inside, labelled with pin numbers (that I've arbitrarily assigned):
 
-<object type="image/svg+xml" data="/images/ricor-k526s/board-labelled.svg" width="400"></object>
+<p><object type="image/svg+xml" data="/images/ricor-k526s/board-labelled.svg" style="max-width: 400px"></object></p>
 
 The pinout is as follows (phases A, B, C are ordered clockwise, looking from the BLDC drive end):
 
