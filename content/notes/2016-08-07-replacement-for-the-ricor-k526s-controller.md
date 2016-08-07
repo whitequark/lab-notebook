@@ -4,7 +4,6 @@ created_at: 2016-08-07 02:38:19 +0000
 title: "Replacement for the Ricor K526S controller"
 tags:
   - electronics
-  - mechanics
   - cryogenics
   - repair
 ---
