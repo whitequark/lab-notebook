@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title><%= @config[:title] %> - <%= @item[:title] %></title>
+    <title><%= @config[:title] %><% if @item[:title] %> - <%= @item[:title] %><% end %></title>
     <meta name="author" content="<%= @config[:author_name] %>">
     <meta name="generator" content="Nanoc <%= Nanoc::VERSION %>">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
