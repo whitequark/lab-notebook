@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'nanoc', path: '~/nanoc' #git: 'https://github.com/nanoc/nanoc'
+gem 'nanoc', path: '~/Work/nanoc'
 gem 'kramdown'
-gem 'rouge'
+gem 'rouge', path: '~/Work/rouge'
 gem 'typogruby'
 gem 'micro_magick'
 gem 'nokogiri'
@@ -10,5 +10,5 @@ gem 'builder'
 gem 'adsf'
 
 group :nanoc do
-  gem 'guard-nanoc', git: 'https://github.com/whitequark/guard-nanoc'
+  gem 'guard-nanoc', '~> 2.1.0'
 end
