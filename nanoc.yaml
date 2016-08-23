@@ -28,5 +28,5 @@ checks:
 deploy:
   default:
     kind: rsync
-    dst:  "fehu.whitequark.org:/var/www/lab.whitequark.org"
+    dst:  "lab.whitequark.org:/var/www/lab.whitequark.org"
     options: [ '-aP', '--delete-after' ]
