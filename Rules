@@ -53,6 +53,10 @@ route %r{/notes/(\d{4}-\d{2}-\d{2})-(.+).md} do |date, name|
   "/notes/#{date}/#{name}/index.html"
 end
 
+route '/files/**/*' do
+  item.identifier.to_s
+end
+
 route '/**/*.{html,md}' do
   if item.identifier =~ '/index.*'
     '/index.html'
