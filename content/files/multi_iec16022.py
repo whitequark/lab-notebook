@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # encoding:utf-8
 
+# This code is released under CC0.
+# https://creativecommons.org/publicdomain/zero/1.0/
+
 import argparse, re, os, subprocess, hashlib
 
 parser = argparse.ArgumentParser(description='Convert ASCII data to printable A5 HTML page.')
