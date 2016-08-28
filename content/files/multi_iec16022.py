@@ -16,7 +16,7 @@ parser.add_argument('title', metavar='TITLE', type=str,
 args = parser.parse_args()
 
 key = args.input.read()
-os.mkdir(args.output, 0700)
+os.mkdir(args.output, 0o700)
 
 chunks = re.findall(re.compile('.{1,850}', re.DOTALL), key)
 for index, chunk in enumerate(chunks):
@@ -30,7 +30,7 @@ with open("{}/index.html".format(args.output), "w") as html:
     images = ""
     for index, chunk in enumerate(chunks):
         images += """<img src="chunk{}.png">""".format(index)
-    digest = hashlib.sha256(key).hexdigest()
+    digest = hashlib.sha256(key.encode()).hexdigest()
     html.write("""<!DOCTYPE html>
 <head>
     <style type="text/css">
