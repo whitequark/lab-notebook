@@ -5,6 +5,7 @@ title: "SMD reflow with a blowtorch, try #2"
 tags:
   - electronics
   - circuit boards
+  - failure
 ---
 
 Happy with the success of my [previous attempt][reblow] of blowtorch reflow, I've decided to do it
@@ -15,7 +16,7 @@ again, this time on a more finicky footprint, TQFN-20, using my [Silego breakout
 
 First, an SLG46620V was programmed to output 1780 Hz square wave on all pins except pin 2:
 
-<% highlight_code 'verilog', 'test_pattern.v' do %>
+<% highlight_code 'verilog', 'square_wave.v' do %>
 module top(output [16:0] o);
   wire clk;
   GP_LFOSC lfosc(.CLKOUT(clk));
