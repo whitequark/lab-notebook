@@ -41,11 +41,6 @@ class UART(Module):
 
         self.rx_bitno = rx_bitno = Signal(3)
         self.submodules.rx_fsm = FSM(reset_state="IDLE")
-        self.comb += [
-            self.rx_ready.eq(self.rx_fsm.ongoing("FULL")),
-            self.rx_error.eq(self.rx_fsm.ongoing("ERROR"))
-        ]
-
         self.rx_fsm.act("IDLE",
             If(~serial.rx,
                 NextValue(rx_counter, divisor // 2),
@@ -76,12 +71,15 @@ class UART(Module):
             )
         )
         self.rx_fsm.act("FULL",
+            self.rx_ready.eq(1),
             If(self.rx_ack,
                 NextState("IDLE")
             ).Elif(~serial.rx,
                 NextState("ERROR")
             )
         )
+        self.rx_fsm.act("ERROR",
+            self.rx_error.eq(1))
 
         ###
 
@@ -98,11 +96,8 @@ class UART(Module):
         self.tx_bitno = tx_bitno = Signal(3)
         self.tx_latch = tx_latch = Signal(8)
         self.submodules.tx_fsm = FSM(reset_state="IDLE")
-        self.comb += [
-            self.tx_ack.eq(self.tx_fsm.ongoing("IDLE"))
-        ]
-
         self.tx_fsm.act("IDLE",
+            self.tx_ack.eq(1),
             If(self.tx_ready,
                 NextValue(tx_counter, divisor - 1),
                 NextValue(tx_latch, self.tx_data),
@@ -265,7 +260,7 @@ class _LoopbackTest(Module):
             rx_strobe.eq(self.uart.rx_ready & empty),
             tx_strobe.eq(self.uart.tx_ack & ~empty),
             self.uart.rx_ack.eq(rx_strobe),
-            self.uart.tx_data.eq(data & 0xdf),
+            self.uart.tx_data.eq(data),
             self.uart.tx_ready.eq(tx_strobe)
         ]
         self.sync += [
