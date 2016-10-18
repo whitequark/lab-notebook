@@ -84,10 +84,11 @@ On the other hand, in Migen there is no such restriction; to drive a signal, a s
 merely be in the same clock domain. (Statements are placed into a single `always @(*)` block and
 an `always @(posedge clk)` block per clock domain during synthesis; Migen reset is synchronous.)
 
-As a result, Migen doesn't have this spurious coupling between syntax and behavior that Migen has;
-for example, instead of having a configurable phase like `ClockDiv`, the Migen UART code simply
-resets the divider to the half of its wraparound value from one of the FSM states, and this
-does not conflict with the decrement logic, as the later (in code) action takes precedence.
+As a result, Migen doesn't have this spurious coupling between syntax and behavior that
+Verilog has; for example, instead of having a configurable phase like `ClockDiv`, the Migen
+UART code simply resets the divider to the half of its wraparound value from one of
+the FSM states, and this does not conflict with the decrement logic, as the later (in code)
+action takes precedence.
 In this example the counter is not factored out into a submodule, but putting it there would
 not change anything as submodules are flattened.
 
@@ -170,7 +171,8 @@ helped me write good HDL. The rest are little increases in productivity that mat
 especially together, but the lack of them is perhaps not a massive hindrance in Verilog.
 
 I haven't used Migen's more advanced features yet, like parameterization of control flow,
-and especially arrays of signals; arrays of signals in particular are not directly expressible
-in Verilog and so are likely to result in very obtuse code when implemented manually.
-But they are needed for the more complex logic, like bus arbiters, and I haven't written
-one of those (yet).
+and especially arrays of signals indexed by signals; such arrays of signals in particular are
+not directly expressible in Verilog (though they seem to be possible in SystemVerilog) and
+so are likely to result in very obtuse code when implemented manually.
+But they are needed for the more complex logic, like bus arbiters, and I haven't
+written one of those (yet).
