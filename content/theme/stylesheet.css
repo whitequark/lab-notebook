@@ -168,6 +168,7 @@ hr {
   list-style: none;
   border: 1px solid #ccc;
   padding: 13px;
+  margin-bottom: 1em;
 }
 
 #markdown-toc li {
