@@ -143,6 +143,17 @@ In Migen, cosimulation is a mere matter of writing a Python generator function, 
 of course call arbitrary code that has a Python interface, such as a CPU simulator or
 even a driver for a developer board.
 
+## Platform resource management
+
+In Verilog, toplevel ports are usually bound to specific pads or balls with an external
+constraint file, which usually does not provide any meaningful grouping and has to be written
+(or copied) per-project.
+
+In Migen, toplevel ports are requested from the "platform", which returns structured signals
+or groups of signals in response to a symbolic request; and the definitions can be composed,
+i.e. the set of signals can be initially defined by the base board, then extended by a per-project
+daughterboard, and so on.
+
 ## Built-in build system
 
 In Verilog, running a design on your hardware means awkwardly digging up that Makefile you first
