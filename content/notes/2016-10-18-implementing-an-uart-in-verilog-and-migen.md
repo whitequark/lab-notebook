@@ -169,7 +169,8 @@ Migen's lack of restrictions around process and meaningful handling of resets ha
 helped me write good HDL. The rest are little increases in productivity that matter,
 especially together, but the lack of them is perhaps not a massive hindrance in Verilog.
 
-I haven't used Migen's more advanced features yet, like parameterization of control flow
-and especially arrays; arrays in particular are not directly expressible in Verilog and so
-are likely to result in very obtuse code when implemented manually. But they are needed for
-the more complex logic, like bus arbiters, and I haven't written one of those (yet).
+I haven't used Migen's more advanced features yet, like parameterization of control flow,
+and especially arrays of signals; arrays of signals in particular are not directly expressible
+in Verilog and so are likely to result in very obtuse code when implemented manually.
+But they are needed for the more complex logic, like bus arbiters, and I haven't written
+one of those (yet).
