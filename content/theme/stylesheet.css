@@ -205,6 +205,7 @@ code {
   border-radius: 3px;
   background-color: #f8f8f8;
   padding: 2px;
+  word-wrap: break-word;
 }
 
 pre code {
