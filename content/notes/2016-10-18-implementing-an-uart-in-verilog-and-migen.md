@@ -1,7 +1,7 @@
 ---
 kind: article
 created_at: 2016-10-18 19:42:42 +0000
-title: "Implementing an UART in Verilog and Migen"
+title: "Implementing a UART in Verilog and Migen"
 tags:
   - programmable logic
 ---
