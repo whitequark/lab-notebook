@@ -36,7 +36,7 @@ class SimpleUART(Module):
             If((bus.adr & 1) == 0,
                 bus.dat_r.eq(Cat(phy.rx_data, phy.rx_ready, phy.rx_error))
             ).Elif((bus.adr & 1) == 1,
-                bus.dat_r.eq(Cat(Replicate(0, 8), phy.tx_ack))
+                bus.dat_r.eq(Cat(Replicate(0, 9), phy.tx_ack))
             ),
 
             phy.rx_ack.eq(0),
@@ -49,7 +49,8 @@ class SimpleUART(Module):
                     If((bus.adr & 1) == 0,
                         phy.rx_ack.eq(bus.dat_w[8])
                     ).Elif((bus.adr & 1) == 1,
-                        Cat(phy.tx_data, phy.tx_ready).eq(bus.dat_w)
+                        phy.tx_data.eq(bus.dat_w[:8]),
+                        phy.tx_ready.eq(bus.dat_w[8])
                     )
                 )
             )

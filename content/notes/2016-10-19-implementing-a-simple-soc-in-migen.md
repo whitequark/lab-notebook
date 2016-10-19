@@ -170,25 +170,26 @@ out in HTML?)</small>
 .uartreg td { text-align: center; }
 .uartreg tr:first-child th:first-child { width: 100px; }
 #uartreg0 tr:first-child td:nth-child(2) { width: 300px; }
-#uartreg0 tr:first-child td:nth-child(3) { width: 70px; }
-#uartreg0 tr:first-child td:nth-child(4) { width: 70px; }
-#uartreg4 tr:first-child td:nth-child(2) { width: 385px; }
-#uartreg4 tr:first-child td:nth-child(3) { width: 70px; }
+#uartreg0 tr:first-child td:nth-child(3) { width: 80px; }
+#uartreg0 tr:first-child td:nth-child(4) { width: 80px; }
+#uartreg4 tr:first-child td:nth-child(2) { width: 300px; }
+#uartreg4 tr:first-child td:nth-child(3) { width: 80px; }
+#uartreg4 tr:first-child td:nth-child(4) { width: 80px; }
 </style>
 <figure id="uartreg0" class="uartreg">
 <figcaption>Address 0 (RX Status/Data Register)</figcaption>
 <table>
-  <tr><th>Bit</th>     <td>31:10</td><td>9</td>     <td>8</td>       <td>7:0</td></tr>
-  <tr><th>Type</th>    <td>N/A</td>  <td>R</td>     <td>R/C1</td>    <td>R</td></tr>
-  <tr><th>Function</th><td>N/A</td>  <td>RX Err</td><td>RX Rdy</td><td>RX Data</td></tr>
+  <tr><th>Bit</th>     <td>31:10</td><td>9</td>       <td>8</td>      <td>7:0</td></tr>
+  <tr><th>Type</th>    <td>N/A</td>  <td>R</td>       <td>R/C1</td>   <td>R</td></tr>
+  <tr><th>Function</th><td>N/A</td>  <td>RX Error</td><td>RX Full</td><td>RX Data</td></tr>
 </table>
 </figure>
 <figure id="uartreg4" class="uartreg">
 <figcaption>Address 4 (TX Command/Data Register)</figcaption>
 <table>
-  <tr><th>Bit</th>     <td>31:9</td><td>8</td>     <td>7:0</td></tr>
-  <tr><th>Type</th>    <td>N/A</td> <td>W</td>     <td>W</td></tr>
-  <tr><th>Function</th><td>N/A</td> <td>TX Rdy</td><td>TX Data</td></tr>
+  <tr><th>Bit</th>     <td>31:10</td><td>9</td>       <td>8</td>       <td>7:0</td></tr>
+  <tr><th>Type</th>    <td>N/A</td>  <td>R</td>       <td>W</td>       <td>W</td></tr>
+  <tr><th>Function</th><td>N/A</td>  <td>TX Empty</td><td>TX Start</td><td>TX Data</td></tr>
 </table>
 </figure>
 
@@ -229,7 +230,7 @@ class SimpleUART(Module):
             If((bus.adr & 1) == 0,
                 bus.dat_r.eq(Cat(phy.rx_data, phy.rx_ready, phy.rx_error))
             ).Elif((bus.adr & 1) == 1,
-                bus.dat_r.eq(Cat(Replicate(0, 8), phy.tx_ack))
+                bus.dat_r.eq(Cat(Replicate(0, 9), phy.tx_ack))
             ),
 
             phy.rx_ack.eq(0),
@@ -242,7 +243,8 @@ class SimpleUART(Module):
                     If((bus.adr & 1) == 0,
                         phy.rx_ack.eq(bus.dat_w[8])
                     ).Elif((bus.adr & 1) == 1,
-                        Cat(phy.tx_data, phy.tx_ready).eq(bus.dat_w)
+                        phy.tx_data.eq(bus.dat_w[:8]),
+                        phy.tx_ready.eq(bus.dat_w[8])
                     )
                 )
             )
@@ -336,7 +338,7 @@ in response. It is implemented in OR1K assembly:
 1:  l.ori   r11, r0, 0x141
     l.sw    4(r2), r11
 2:  l.lwz   r11, 4(r2)
-    l.andi  r11, r11, 0x100
+    l.andi  r11, r11, 0x200
     l.sfeqi r11, 0
     l.bf    2b
     l.addi  r12, r12, -1
