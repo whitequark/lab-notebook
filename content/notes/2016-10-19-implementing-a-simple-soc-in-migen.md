@@ -31,15 +31,16 @@ To write this note, I was using:
 
 Newer versions will probably still work fine.
 
-[migengit]:   https://github.com/m-labs/migen
-[misocgit]:   https://github.com/m-labs/misoc
-[mor1kxgit]:  https://github.com/openrisc/mor1kx
-[yosysgit]:   https://github.com/cliffordwolf/yosys
-[arachnegit]: https://github.com/cseed/arachne-pnr
-[uart]:       /files/verilog-vs-migen/UART.py
-[uartnote]:   /notes/2016-10-18/implementing-an-uart-in-verilog-and-migen/#migen-code
-[binutils]:   https://www.gnu.org/software/binutils/
-[evb]:        http://www.latticesemi.com/Products/DevelopmentBoardsAndKits/iCE40HX8KBreakoutBoard.aspx
+[migengit]:    https://github.com/m-labs/migen
+[misocgit]:    https://github.com/m-labs/misoc
+[mor1kxgit]:   https://github.com/openrisc/mor1kx
+[yosysgit]:    https://github.com/cliffordwolf/yosys
+[icestormgit]: https://github.com/cliffordwolf/icestorm
+[arachnegit]:  https://github.com/cseed/arachne-pnr
+[uart]:        /files/verilog-vs-migen/UART.py
+[uartnote]:    /notes/2016-10-18/implementing-an-uart-in-verilog-and-migen/#migen-code
+[binutils]:    https://www.gnu.org/software/binutils/
+[evb]:         http://www.latticesemi.com/Products/DevelopmentBoardsAndKits/iCE40HX8KBreakoutBoard.aspx
 
 # Implementation
 
@@ -196,7 +197,7 @@ out in HTML?)</small>
 The bit types that are reasonable to use in peripheral registers are:
 
   * R means read-only (writes do nothing);
-  * W means write-only (writes return zeroes);
+  * W means write-only (reads return zeroes);
   * R/W means read-write (reads return what was written, and any written value is valid);
   * R/C1 means read-only, cleared by writing one (writing zero does nothing, writing one
     clears the bit if it was set, or does nothing);
