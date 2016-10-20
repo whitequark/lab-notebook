@@ -202,14 +202,16 @@ The bit types that are reasonable to use in peripheral registers are:
   * R/C1 means read-only, cleared by writing one (writing zero does nothing, writing one
     clears the bit if it was set, or does nothing);
   * N/A means reserved and should be written as zero (reads return garbage, zero
-    writes do nothing, non-zero writes result in unpredictable behavior); if software observes
-    these restrictions, the bit can gain new functionality later.
+    writes do nothing, non-zero writes result in unpredictable behavior).
 
 The R/C1 bit type is particularly useful for event flags. The reason it's specifically cleared
 by writing one is that this allows updating unrelated bits in the same register without
 accidentally clearing some interesting flags, even if the set of flags is not known beforehand
 and thus they cannot be explicitly masked; in general, it is otherwise impossible to safely
 update a part of the register using a read-modify-write cycle without introducing a race condition.
+
+The N/A bit type is specified in a way that lets the bit gain new functionality later without
+breaking older software, if the software respects the associated restrictions.
 
 Of course, when implementing a peripheral you have complete freedom over its behavior; and you
 could implement odd things, like registers that self-clear on reads, or bits that have completely
