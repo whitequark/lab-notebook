@@ -1,11 +1,3 @@
-PATH
-  remote: ~/Work/nanoc
-  specs:
-    nanoc (4.3.0)
-      cri (~> 2.3)
-      hamster (~> 3.0)
-      ref (~> 2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -29,39 +21,45 @@ GEM
       shellany (~> 0.0)
       thor (>= 0.18.1)
     guard-compat (1.2.1)
-    guard-nanoc (2.1.0)
+    guard-nanoc (2.1.1)
       guard (~> 2.8)
       guard-compat (~> 1.0)
-      nanoc (~> 4.0)
+      nanoc (>= 4.3.8, < 5.0)
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
-    kramdown (1.11.1)
+    kramdown (1.12.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
     lumberjack (1.0.10)
     method_source (0.8.2)
-    micro_magick (0.0.7)
-    mini_portile2 (2.0.0)
+    micro_magick (1.0.1)
+    mini_portile2 (2.1.0)
+    nanoc (4.3.8)
+      cri (~> 2.3)
+      hamster (~> 3.0)
+      parallel (~> 1.9)
+      ref (~> 2.0)
     nenv (0.3.0)
-    nokogiri (1.6.7.2)
-      mini_portile2 (~> 2.0.0.rc2)
+    nokogiri (1.6.8.1)
+      mini_portile2 (~> 2.1.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    parallel (1.9.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rack (2.0.1)
-    rb-fsevent (0.9.7)
+    rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     ref (2.0.0)
-    rouge (2.0.6)
-    ruby_dep (1.4.0)
-    rubypants (0.2.0)
+    rouge (2.0.7)
+    ruby_dep (1.5.0)
+    rubypants (0.6.0)
     shellany (0.0.1)
     slop (3.6.0)
     thor (0.19.1)
@@ -74,10 +72,10 @@ PLATFORMS
 DEPENDENCIES
   adsf
   builder
-  guard-nanoc (~> 2.1.0)
+  guard-nanoc (~> 2.1.1)
   kramdown
   micro_magick
-  nanoc!
+  nanoc (~> 4.3.8)
   nokogiri
   rouge (~> 2.0.6)
   typogruby
