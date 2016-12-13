@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'nanoc', '~> 4.3.8'
 gem 'kramdown'
-gem 'rouge', '~> 2.0.6'
+gem 'rouge', path: '~/Work/rouge'
 gem 'typogruby'
 gem 'micro_magick'
 gem 'nokogiri'
