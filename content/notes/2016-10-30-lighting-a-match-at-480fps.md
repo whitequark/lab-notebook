@@ -7,6 +7,6 @@ tags:
 ---
 
 <video controls width="448">
-  <source src="/videos/lighting-a-match.mp4" type="video/webm">
+  <source src="/videos/lighting-a-match.mp4">
 </video>
 
