@@ -4,6 +4,7 @@ created_at: 2016-12-13 20:29:07 +0000
 title: "Abstracting over mutability in Rust"
 tags:
   - software
+  - rust
 ---
 
 It is common to see the statement that "[Rust][] cannot abstract over mutability". Indeed,
@@ -298,10 +299,11 @@ help: consider using an explicit lifetime parameter as shown:
    |     ^
 <% end %>
 
-Unfortunately I do not understand why it rejects the code, it doesn't explain what are
-the requirements that are in conflict, and its suggestion is completely unhelpful (as it
-would the the lifetime of the slice to the lifetime of the packet, which is something
-we're trying to avoid all along). So this is a dead end.
+The error is somewhat unhelpful. As [explained by Quxxy][quxxy], the underlying reason is that,
+for example, `T` could be `Vec<u8>`; then, the result of `as_ref` would have the lifetime of your struct, not an independent lifetime, as `as_ref` borrows its `self` and borrowing `self` then
+just borrows the field.
+
+[quxxy]: https://www.reddit.com/r/rust/comments/5i63se/abstracting_over_mutability/db5sae6/
 
 Instead, one could notice that indirection through the `AsRef` trait is idempotent:
 any `&AsRef<T>` is an `AsRef<T>`, and similarly, any `&AsMut<T>` is an `AsMut<T>` is an `AsRef<T>`.
