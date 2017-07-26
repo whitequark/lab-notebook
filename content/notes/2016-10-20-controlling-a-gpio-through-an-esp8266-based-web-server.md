@@ -30,9 +30,11 @@ It can be flashed to an ESP8266 module with MicroPython already installed using 
 (very dirty) script:
 
 <% highlight_code 'python', 'flash.py' do %>
-import os
+#!/usr/bin/env python
+# usage: ./flash.py firmware.py
+import os, sys
 os.system("stty -F /dev/ttyUSB0 115200")
-with open("main.py") as f:
+with open(sys.argv[1]) as f:
    code = f.read()
 with open('/dev/ttyUSB0', 'w') as f:
    f.write('with open("/main.py", "w") as f: f.write('+repr(code)+')\r\n\r\n')
