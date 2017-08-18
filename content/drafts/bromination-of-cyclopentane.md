@@ -20,7 +20,7 @@ In order to increase yields, yet still perform a reasonably low number of distil
 
 The indicator of progress is evolution of hydrogen bromide. The indicator of completion is the loss of color.
 
-# First attempt
+# First attempt (2017-08-06)
 
 In a 250 ml round-bottom flask stopper I've mixed:
 
@@ -30,8 +30,6 @@ In a 250 ml round-bottom flask stopper I've mixed:
 The reaction proceeding to completion would evolve 0.33 mole of hydrogen bromide (approx. 7 L), so a gas washing flask was set up with a saturated solution of sodium thiosulphite, which would trap any acid as well as bromine vapor, and a silicone hose was used to direct the effluent into it. The hose, as expected, is not resistant to bromine, which penetrated the silicone, causing it to crack through the penetration depth, as well as permeating the entire thickness and causing a noticeable odor, however for the few hours that the reaction would proceed at most, it is satisfactory.
 
 <%= lightbox '/images/cyclopentane-bromination/setup.jpeg' %>
-
-<small>Note: the reaction is performed with adequate ventilation, proper personal protective equipment, and rehearsed safety procedures.</small>
 
 Trying to perform the reaction resulted in a series of failures.
 
