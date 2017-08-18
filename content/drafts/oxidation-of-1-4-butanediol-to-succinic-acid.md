@@ -34,11 +34,13 @@ Despite the fact that 1,4-butanediol was added quickly, no evolution of fumes wa
 
 According to [Svetlakov2001], succinic acid should have started to precipitate 30-40 min after starting the reaction. However, that number was given for 80% nitric acid, not 68%.
 
-The reaction mixture was stirred for 6 hours with no evident evolution of fumes or change in color, although it stayed at about 30 °C. After 6 hours, the stirrer was stopped, and the mixture quickly separated into two layers: top clear layer, taking little volume (likely unreacted butanediol) and bottom cloudy white layer, taking most of the flask (likely a mixture of nitric acid, water, and succinic acid).
+The reaction mixture was stirred for 6 hours with no evident evolution of fumes or change in color, although it stayed at about 30 °C. After 6 hours, the stirrer was stopped, and the mixture quickly separated into two layers: top clear layer, taking little volume (likely unreacted butanediol) and bottom cloudy white layer, taking most of the flask (likely a mixture of nitric acid, water, and succinic acid). While the mixture was separating, the top layer had an appearance of merging oily blobs.
 
 No apparent change has happened for a while, until the mixture rapidly started boiling and evolving large amounts of brown fumes; the temperature was over 100 °C. Meanwhile, the condenser coolant pump has failed sometime during the previous six hours. The reaction was quickly brought under control by putting a large bath filled with room temperature water under the reaction flask.
 
-TODO: write about the resulting compound, if any
+After about 1 hour was passed, stirring was stopped (again) and the mixture separated (again!) into two layers: top clear yellow-green layer, taking most of the volume, and bottom cloudy brownish layer, taking the rest of the volume. While the mixture was separating, the bottom layer had an appearance of merging oily blobs.
+
+The resulting mixture was filtered through a 100 µm pore size sintered glass funnel. No solids turned out to have precipitated. The filtrate was neutralized with sodium carbonate in excess and the color changed to tomato red, and remained this way even after stirring and bubbling ceased.
 
 ## Conclusions
 
@@ -48,4 +50,4 @@ TODO: write about the resulting compound, if any
   * Scaling it up quite little was a right thing to do. Scaling it up *at all* was not.
   * You can never rehearse getting into PPE and quenching the reaction too much.
   * I need a better ventilation system.
-  * And a coolant pump.
+  * And a coolant pump. Actually specified at 100% duty cycle, and not just to "well, how hard is it to make a decent water pump".
