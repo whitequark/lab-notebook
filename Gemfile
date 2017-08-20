@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'nanoc', '~> 4.3.8'
+gem 'nanoc', github: 'nanoc/nanoc'# '~> 4.3.8'
 gem 'kramdown'
 gem 'rouge'
 gem 'typogruby'
