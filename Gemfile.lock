@@ -1,23 +1,15 @@
-GIT
-  remote: git://github.com/nanoc/nanoc.git
-  revision: 9c603c97b3dc7100d128fa626f0e0658a2836df6
-  specs:
-    nanoc (4.8.2)
-      cri (~> 2.8)
-      ddplugin (~> 1.0)
-      hamster (~> 3.0)
-      ref (~> 2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     adsf (1.2.1)
       rack (>= 1.0.0)
     builder (3.2.3)
-    coderay (1.1.1)
+    coderay (1.1.2)
     colored (1.2)
     concurrent-ruby (1.0.5)
-    cri (2.9.1)
+    cri (2.10.1)
       colored (~> 1.2)
     ddplugin (1.0.1)
     ffi (1.9.18)
@@ -38,35 +30,42 @@ GEM
       nanoc (>= 4.3.8, < 5.0)
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
-    kramdown (1.14.0)
+    kramdown (1.15.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
     lumberjack (1.0.12)
-    method_source (0.8.2)
+    method_source (0.9.0)
     micro_magick (1.0.1)
-    mini_portile2 (2.2.0)
+    mini_portile2 (2.3.0)
+    nanoc (4.8.11)
+      addressable (~> 2.5)
+      cri (~> 2.8)
+      ddplugin (~> 1.0)
+      hamster (~> 3.0)
+      ref (~> 2.0)
+      slow_enumerator_tools (~> 1.0)
     nenv (0.3.0)
-    nokogiri (1.8.0)
-      mini_portile2 (~> 2.2.0)
+    nokogiri (1.8.1)
+      mini_portile2 (~> 2.3.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    pry (0.10.4)
+    pry (0.11.2)
       coderay (~> 1.1.0)
-      method_source (~> 0.8.1)
-      slop (~> 3.4)
+      method_source (~> 0.9.0)
+    public_suffix (3.0.0)
     rack (2.0.3)
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     ref (2.0.0)
-    rouge (2.2.0)
+    rouge (3.0.0)
     ruby_dep (1.5.0)
     rubypants (0.6.0)
     shellany (0.0.1)
-    slop (3.6.0)
+    slow_enumerator_tools (1.0.0)
     thor (0.20.0)
     typogruby (1.0.18)
       rubypants
@@ -80,7 +79,7 @@ DEPENDENCIES
   guard-nanoc (~> 2.1.1)
   kramdown
   micro_magick
-  nanoc!
+  nanoc (~> 4.8)
   nokogiri
   rouge
   typogruby
