@@ -16,7 +16,7 @@ In this note I describe the method required for accessing GPIOs on (in theory) e
 
 # Overview
 
-Historically (going as far back as ICH0), Intel used a special PCI function to implement a multitude of legacy functions (such as `A20#`, the [LPC bus], etc). The Intel lingo for this is "D31:F0", as in "device 31, function 0", but it shows up in `lspci` as `00:1f.0 ISA bridge`. (It has nothing to do with ISA.) In this note, I will use the Intel terminology for PCI devices.
+Historically (going as far back as ICH0), Intel used a special PCI function to implement a multitude of legacy functions (such as `A20#`, the [LPC bus], etc). The Intel lingo for this is "D31:F0", as in "device 31, function 0", but it shows up in `lspci` as `00:1f.0 ISA bridge`. In this note, I will use the Intel terminology for PCI devices.
 
 [LPC bus]: https://en.wikipedia.org/wiki/Low_Pin_Count
 
