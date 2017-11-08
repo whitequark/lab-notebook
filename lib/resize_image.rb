@@ -9,10 +9,17 @@ class ResizeImage < Nanoc::Filter
     FileUtils.mkdir_p(cache_dir)
 
     thumbnail_path = File.join(cache_dir, Digest::SHA1.hexdigest("thumbnail:" + filename))
-    if !File.exists?(thumbnail_path)
-      MicroMagick::Image.new(filename).
-        resize("#{params[:size]}x#{params[:size]}").
-        write(thumbnail_path)
+    unless File.exists?(thumbnail_path)
+      begin
+        MicroMagick::Image.new(filename).
+          resize("#{params[:size]}x#{params[:size]}").
+          write(thumbnail_path)
+      rescue MicroMagick::Error => e
+        unless e.message.include? 'CRC error'
+          File.unlink(thumbnail_path)
+          raise
+        end
+      end
     end
 
     FileUtils.cp(thumbnail_path, output_filename)
