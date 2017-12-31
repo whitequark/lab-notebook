@@ -17,6 +17,30 @@
     <script type="text/javascript" src="/theme/jquery.fancybox-2.1.5.min.js"></script>
     <script type="text/javascript" src="/theme/behavior.js"></script>
 
+    <% if @item[:has_mathjax] %>
+    <script type="text/x-mathjax-config">
+      MathJax.Ajax.config.path["mhchem"] =
+        "https://cdnjs.cloudflare.com/ajax/libs/mathjax-mhchem/3.2.0";
+      MathJax.Hub.Config({
+        jax: ["input/TeX", "output/CommonHTML"],
+        extensions: ["tex2jax.js", "MathMenu.js", "MathZoom.js",
+                     "AssistiveMML.js", "a11y/accessibility-menu.js"],
+        TeX: {
+          extensions: ["AMSmath.js", "AMSsymbols.js", "[mhchem]/mhchem.js",
+                       "noErrors.js", "noUndefined.js"]
+        },
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          processEscapes: true
+        },
+        displayAlign: "left"
+      });
+    </script>
+    <script type="text/javascript"
+       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js">
+    </script>
+    <% end %>
+
     <% if @item[:has_solvespace] %>
     <script type="text/javascript" src="/theme/three-r76.js"></script>
     <script type="text/javascript" src="/theme/hammer-2.0.8.js"></script>
