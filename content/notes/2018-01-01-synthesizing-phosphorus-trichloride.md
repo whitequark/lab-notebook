@@ -1,22 +1,19 @@
 ---
 kind: article
 created_at: 2018-01-01 00:22:52 +0000
-title: "Synthesizing phosphorus chloride"
+title: "Synthesizing phosphorus(III) chloride"
 tags:
   - chemistry
+  - failure
 has_mathjax: true
 ---
 
-In this note I'll describe synthesis of phosphorus chloride from elements with an emphasis of simplicity. For example, concentrated sulfuric acid or potassium permanaganate may not be easily available in certain locales, and I am trying to avoid using them in this synthesis.
-
-Note the phrasing of "phosphorus chloride". Initially I expected to get phosphorus(III) chloride and use it to make phosphorus(V) chloride, but I got the latter right away, which saved me the hassle.
+In this note I'll describe my failed attempt at synthesis of phosphorus(III) chloride from elements with an emphasis of simplicity. For example, concentrated sulfuric acid or potassium permanaganate may not be easily available in certain locales, and I am trying to avoid using them in this synthesis.
 
 <!--more-->
 
 * toc
 {: toc}
-
-# Attempt at synthesis of PCl₃
 
 ## Glassware
 
@@ -26,16 +23,17 @@ Note the phrasing of "phosphorus chloride". Initially I expected to get phosphor
   * 14/23-29/32 105° bend
   * 29/32-14/23 two-necked 250 mL round-bottom flask
   * 14/23-14/23 45° bend
-  * 14/23-14/23 30cm Liebeg condenser
+  * 14/23-14/23 30cm Liebig condenser
   * 14/23-14/23 still receiver
   * 14/23 100 mL flat-bottom flask
   * gas washing bottle
 
 ## Chemicals
 
-  * Red phosphorus
-  * Manganese(IV) oxide
+  * manganese(IV) oxide
   * 38% hydrochloric acid
+  * red phosphorus
+  * sodium hydrocarbonate
 
 ## Apparatus
 
@@ -72,4 +70,3 @@ Apparatus improvement and purification is left to further work.
   * The $\ce{MnO_2 + HCl}$ chlorine generator is very mild and does not even really need to be controlled using an addition funnel; it's enough to change the speed with which it is stirred.
   * At high chlorine generation rates, one can observe the fumes of $\ce{PCl5}$ in the 105° bend.
   * It is widely believed ([sciencemadness](http://www.sciencemadness.org/talk/viewthread.php?tid=63363), [prepchem.com](http://www.prepchem.com/synthesis-of-phosphorus-pentachloride/)) that preparation of $\ce{PCl5}$ is a complicated affair requiring drying of $\ce{Cl2}$, starting with white phosphorus (lol no), reflux distillation... Turns out all of that is untrue, and a very simple setup works just as well.
-l
