@@ -1,10 +1,9 @@
     <nav class="secondary">
       <ul>
         <li><h1>By year:</h1></li>
-        <li><%= link_to_unless_current "2014", "/notes/2014/" %></li>
-        <li><%= link_to_unless_current "2015", "/notes/2015/" %></li>
-        <li><%= link_to_unless_current "2016", "/notes/2016/" %></li>
-        <li><%= link_to_unless_current "2017", "/notes/2017/" %></li>
+        <% %w(2014 2015 2016 2017 2018).each do |year| %>
+        <li><%= link_to_unless_current year, "/notes/#{year}/" %></li>
+        <% end %>
       </ul>
 
       <ul>
