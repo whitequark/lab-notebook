@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 298.19601 212.42867"
+   height="212.42867mm"
+   width="298.19601mm">
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#ff6600;stroke-width:1pt;stroke-opacity:1;fill:#ff6600;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4602" />
+    </marker>
+  </defs>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-5.1162791,-12.380907)"
+     id="layer1">
+    <image
+       xlink:href="apparatus.jpeg"
+       y="12.380907"
+       x="5.1162791"
+       id="image4566"
+       preserveAspectRatio="none"
+       height="212.42867"
+       width="298.19601" />
+    <text
+       id="text6574"
+       y="154.8927"
+       x="40.079075"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:6.61458302px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         id="tspan6572"
+         y="154.8927"
+         x="40.079075"><tspan
+           id="tspan6570"
+           style="fill:#ff6600;stroke:#ffffff;stroke-width:0.26458332"
+           y="154.8927"
+           x="40.079075">MnO₂</tspan></tspan></text>
+    <text
+       id="text6580"
+       y="148.69029"
+       x="177.41652"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:6.61458302px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         id="tspan6633"
+         style="stroke-width:0.26458332"
+         y="148.69029"
+         x="177.41652"><tspan
+           id="tspan6576"
+           style="fill:#ff6600;stroke:#ffffff;stroke-width:0.26458332"
+           y="148.69029"
+           x="177.41652">S</tspan></tspan></text>
+    <text
+       id="text6586"
+       y="196.65942"
+       x="246.4543"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:6.61458302px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         id="tspan6584"
+         y="196.65942"
+         x="246.4543"><tspan
+           id="tspan6582"
+           style="fill:#ff6600;stroke:#ffffff;stroke-width:0.26458332"
+           y="196.65942"
+           x="246.4543">NaHCO₃</tspan></tspan></text>
+    <text
+       id="text4595"
+       y="133.15034"
+       x="94.507645"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:6.61458302px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="fill:#ff6600;stroke:#ffffff;stroke-width:0.26458332"
+         y="133.15034"
+         x="94.507645"
+         id="tspan4593">Cl₂</tspan></text>
+    <path
+       id="path4597"
+       d="m 77.262484,122.66151 c 16.287092,-0.73676 31.828096,-2.86395 45.357146,-8.7407"
+       style="fill:none;stroke:#ff6600;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)" />
+    <text
+       id="text6677"
+       y="159.23761"
+       x="160.46664"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:6.61458302px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         id="tspan6675"
+         y="159.23761"
+         x="160.46664"><tspan
+           id="tspan6673"
+           style="fill:#ff6600;stroke:#ffffff;stroke-width:0.26458332"
+           y="159.23761"
+           x="160.46664">Hexane</tspan></tspan></text>
+  </g>
+</svg>

@@ -58,7 +58,7 @@ $$\ce{
 \frac{1}{2}S2Cl2 + Cl2 -> SCl2
 }$$
 
-That is, in ideal conditions, to produce 1 mole (135 g, 78 mL) of $\ce{SCl2}$, it is necessary to use 1 moles of $\ce{S}$ (32 g), 1 mole (87 g) of $\ce{MnO_2}$ and 4 moles of $\ce{HCl}$ (315 mL at 38%).
+That is, in ideal conditions, to produce 1 mole (135 g, 78 mL) of $\ce{SCl2}$, it is necessary to use 1 mole of $\ce{S}$ (32 g), 1 mole (87 g) of $\ce{MnO_2}$ and 4 moles of $\ce{HCl}$ (315 mL at 38%).
 
 ## Results
 
