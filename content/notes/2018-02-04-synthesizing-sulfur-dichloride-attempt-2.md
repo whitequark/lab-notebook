@@ -1,7 +1,7 @@
 ---
 kind: article
 created_at: 2018-02-04 18:26:07 +0000
-title: "Synthesizing sulfur(II) dichloride, attempt 2"
+title: "Synthesizing sulfur(II) chloride, attempt 2"
 tags:
   - chemistry
   - failure
@@ -57,9 +57,9 @@ See [previous note](/notes/2018-01-02/synthesizing-sulfur-dichloride/#overview).
 
 In the reaction were used:
 
-  * 32g of sulfur
-  * 116g of manganese(IV) oxide
-  * 60ml of hexane
+  * 32 g of sulfur
+  * 116 g of manganese(IV) oxide
+  * 60 ml of hexane
 
 Before filling the chlorine generator with acid, the apparatus was purged with $\ce{CO_2}$ to make sure that the hexane vapors cannot ignite.
 
@@ -92,3 +92,9 @@ To conclude, this was a failure, but the apparatus is a significant improvement 
   * Siphoning, both from the gas washing bottle, and from the reactor, must be prevented. In case of the reactor, it might be enough to raise the chlorine inlet tube, but in case of the gas washing bottle it's not clear.
   * A larger stir bar should be used. A test should be conducted to make sure that the stir bar is capable of agitating the mixture before starting the generator.
   * No polypropylene stoppers. A pity, since they seem so convenient.
+
+## Acknowledgements
+
+  * [@peroxycarbonate] for suggesting the use of hexane as a nontoxic alternative to chlorinated solvents.
+
+[@peroxycarbonate]: https://twitter.com/peroxycarbonate

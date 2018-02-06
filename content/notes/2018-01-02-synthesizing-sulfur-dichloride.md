@@ -1,7 +1,7 @@
 ---
 kind: article
 created_at: 2018-01-02 04:16:30 +0000
-title: "Synthesizing sulfur(II) dichloride"
+title: "Synthesizing sulfur(II) chloride"
 tags:
   - chemistry
   - failure
