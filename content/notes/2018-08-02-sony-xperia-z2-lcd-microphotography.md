@@ -7,7 +7,7 @@ tags:
   - pretty pictures
 ---
 
-I took some microphotographs of a counterfeit Sony Xperia Z2 LCD display, bought on Taobao circa 2017. (This display would not initialize with an unmodified firmware, and was factory-programmed to match the never used, due to a bug, DeviceTree display configuration present in the Xperia Z2 kernel image.)
+I took some microphotographs of a counterfeit Sony Xperia Z2 LCD display, bought on Taobao circa 2017, using an Amscope ME300TZ-2L-3M metallurgical microscope. (This display would not initialize with an unmodified firmware, and was factory-programmed to match the never used, due to a bug, DeviceTree display configuration present in the Xperia Z2 kernel image.)
 
 The combined light photo is not digitally manipulated; this is just how it looks with both episcopic and diascopic light sources on.
 
