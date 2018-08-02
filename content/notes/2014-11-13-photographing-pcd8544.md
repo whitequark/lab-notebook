@@ -3,7 +3,7 @@ kind: article
 title: "Photographing PCD8544"
 created_at: 2014-11-13 20:48:51 +0300
 tags:
-  - photography
+  - microscopy
   - semiconductors
   - pretty pictures
 ---
