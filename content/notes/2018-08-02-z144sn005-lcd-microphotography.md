@@ -7,7 +7,7 @@ tags:
   - pretty pictures
 ---
 
-I've been provided a Z144SN005 LCD that has split in halves as a result of excess mechanical force. Z144SN005 is a ST7735S-based LCD organized as 128RGB×128; it has 384 sources and 128 gates.
+I've been provided a Z144SN005 LCD that has split in halves as a result of excess mechanical force. Z144SN005 is a ST7735S-based LCD organized as 128RGB×128; it has 384 sources and 128 gates. I took some microphotographs of it using an Amscope ME300TZ-2L-3M metallurgical microscope.
 
 The following microphotographs of the front glass plate that contains color filters demonstrate the pixels lighting up:
 
@@ -37,3 +37,5 @@ Second, column (source) drivers. There's 384 in total, so the routing is far mor
 At last, here's a magnified shot of one of the cracks in the glass that killed the LCD:
 
 <%= lightbox '/images/z144sn005-display/crack-10x.png', title: '10x magnification, glass crack' %>
+
+The cleanest pictures were taken by wetting a cotton bud with IPA, then swabbing the glass with the cotton bud such as to leave a thin film but also remove all junk somewhere out of the visual field, and photographing while the field has not evaporated. IPA appears to be nearly index-matched with the glass used in this LCD, and so it hides most if not all imperfections in the glass, apart from any cleaning that may happen as a result of this procedure.
