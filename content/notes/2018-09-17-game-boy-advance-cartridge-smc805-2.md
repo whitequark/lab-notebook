@@ -7,7 +7,7 @@ tags:
   - reverse engineering
 ---
 
-I have been asked to determine if a (pirate) Game Boy Advance cartridge with the PCB marked "SMC805-2 VER:1.5 2016.11.16" can be reflashed. The cartridge contains a battery, an ASIC in a chip-on-board package (epoxy blob), an unidentified Intel chip marked "RL0ZAA00" (possibly "RLOZAA00" or "RLOZAAOO") "A5367952" "Z37LA59B" in a VFBGA-56 package, an ISSI (neé ICSI) static RAM [IS62LV1024LL-55H](/files/gba-cartridge/IS62LV1024.pdf) in a TSOP-32 package, and miscellaneous passives.
+I have been asked to determine if a (pirate) Game Boy Advance cartridge with the PCB marked "SMC805-2 VER:1.5 2006.11.16" can be reflashed. The cartridge contains a battery, an ASIC in a chip-on-board package (epoxy blob), an unidentified Intel chip marked "RL0ZAA00" (possibly "RLOZAA00" or "RLOZAAOO") "A5367952" "Z37LA59B" in a VFBGA-56 package, an ISSI (neé ICSI) static RAM [IS62LV1024LL-55H](/files/gba-cartridge/IS62LV1024.pdf) in a TSOP-32 package, and miscellaneous passives.
 
 Front side of the board with the cartridge pins annotated ([zoomable version](/images/gba-cartridge/labelled.svg)):
 
