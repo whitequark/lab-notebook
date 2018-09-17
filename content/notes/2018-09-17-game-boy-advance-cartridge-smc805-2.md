@@ -13,7 +13,7 @@ Front side of the board with the cartridge pins annotated ([zoomable version](/i
 
 <object type="image/svg+xml" data="/images/gba-cartridge/labelled.svg"></object>
 
-It was immediately clear that the Intel chip has to be a Flash, it has a parallel interface, and by looking at it at a shallow angle to the PCB, it could be seen that the balls are laid out in a 5x6 grid. It was then a matter of a search query to discover that an Intel parallel flash in a BGA-56 package belongs to the 28F series, similar to [28F128Kxx](/files/gba-cartridge/28F128.pdf).
+It was immediately clear that the Intel chip has to be a Flash, it has a parallel interface, and by looking at it at a shallow angle to the PCB, it could be seen that the balls are laid out in a 7x8 grid. It was then a matter of a search query to discover that an Intel parallel flash in a BGA-56 package belongs to the 28F series, similar to [28F128Kxx](/files/gba-cartridge/28F128.pdf).
 
 After desoldering the chip, I have traced the test points to the balls they are connected to, and the pinout matched the 28F series perfectly. Test point assignment ([zoomable version](/images/gba-cartridge/labelled-mag.svg)):
 
