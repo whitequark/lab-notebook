@@ -1,0 +1,387 @@
+diff -ur original/common/inc/nv-linux.h patchedl/common/inc/nv-linux.h
+--- original/common/inc/nv-linux.h	2018-09-23 12:20:02.000000000 +0000
++++ patched/common/inc/nv-linux.h	2018-10-28 07:19:21.526566940 +0000
+@@ -1465,6 +1465,7 @@
+ typedef struct nv_linux_state_s {
+     nv_state_t nv_state;
+     atomic_t usage_count;
++    atomic_t dead;
+ 
+     struct pci_dev *dev;
+ 
+diff -ur original/common/inc/nv-modeset-interface.h patched/common/inc/nv-modeset-interface.h
+--- original/common/inc/nv-modeset-interface.h	2018-08-22 00:55:23.000000000 +0000
++++ patched/common/inc/nv-modeset-interface.h	2018-10-28 07:22:00.768238371 +0000
+@@ -25,6 +25,8 @@
+ 
+ #include "nv-gpu-info.h"
+ 
++#include <asm/atomic.h>
++
+ /*
+  * nvidia_modeset_rm_ops_t::op gets assigned a function pointer from
+  * core RM, which uses the calling convention of arguments on the
+@@ -115,6 +117,8 @@
+ 
+     int (*set_callbacks)(const nvidia_modeset_callbacks_t *cb);
+ 
++    atomic_t * (*gpu_dead)(NvU32 gpu_id);
++
+ } nvidia_modeset_rm_ops_t;
+ 
+ NV_STATUS nvidia_get_rm_ops(nvidia_modeset_rm_ops_t *rm_ops);
+diff -ur original/common/inc/nv-proto.h patched/common/inc/nv-proto.h
+--- original/common/inc/nv-proto.h	2018-08-22 00:55:23.000000000 +0000
++++ patched/common/inc/nv-proto.h	2018-10-28 07:20:49.939494812 +0000
+@@ -81,6 +81,7 @@
+ NvBool      nvidia_get_gpuid_list       (NvU32 *gpu_ids, NvU32 *gpu_count);
+ int         nvidia_dev_get              (NvU32, nvidia_stack_t *);
+ void        nvidia_dev_put              (NvU32, nvidia_stack_t *);
++atomic_t *  nvidia_dev_dead             (NvU32);
+ int         nvidia_dev_get_uuid         (const NvU8 *, nvidia_stack_t *);
+ void        nvidia_dev_put_uuid         (const NvU8 *, nvidia_stack_t *);
+ int         nvidia_dev_get_pci_info     (const NvU8 *, struct pci_dev **, NvU64 *, NvU64 *);
+diff -ur original/nvidia/nv.c patched/nvidia/nv.c
+--- original/nvidia/nv.c	2018-09-23 12:20:02.000000000 +0000
++++ patched/nvidia/nv.c	2018-10-28 07:48:05.895025112 +0000
+@@ -1944,6 +1944,12 @@
+     unsigned int i;
+     NvBool bRemove = NV_FALSE;
+ 
++    if (NV_ATOMIC_READ(nvl->dead))
++    {
++        nv_printf(NV_DBG_ERRORS, "NVRM: nvidia_close called on dead device by pid %d!\n",
++                  current->pid);
++    }
++
+     NV_CHECK_PCI_CONFIG_SPACE(sp, nv, TRUE, TRUE, NV_MAY_SLEEP());
+ 
+     /* for control device, just jump to its open routine */
+@@ -2106,6 +2112,12 @@
+     size_t arg_size;
+     int arg_cmd;
+ 
++    if (NV_ATOMIC_READ(nvl->dead))
++    {
++        nv_printf(NV_DBG_ERRORS, "NVRM: nvidia_ioctl called on dead device by pid %d!\n",
++                  current->pid);
++    }
++
+     nv_printf(NV_DBG_INFO, "NVRM: ioctl(0x%x, 0x%x, 0x%x)\n",
+         _IOC_NR(cmd), (unsigned int) i_arg, _IOC_SIZE(cmd));
+ 
+@@ -3217,6 +3229,7 @@
+     NV_INIT_MUTEX(&nvl->ldata_lock);
+ 
+     NV_ATOMIC_SET(nvl->usage_count, 0);
++    NV_ATOMIC_SET(nvl->dead, 0);
+ 
+     if (!rm_init_event_locks(sp, nv))
+         return NV_FALSE;
+@@ -4018,14 +4031,38 @@
+         nv_printf(NV_DBG_ERRORS,
+                   "NVRM: Attempting to remove minor device %u with non-zero usage count!\n",
+                   nvl->minor_num);
++        nv_printf(NV_DBG_ERRORS,
++                  "NVRM: YOLO, waiting for usage count to drop to zero\n");
+         WARN_ON(1);
+ 
+-        /* We can't continue without corrupting state, so just hang to give the
+-         * user some chance to do something about this before reboot */
+-        while (1)
++        NV_ATOMIC_SET(nvl->dead, 1);
++
++        /* Insanity check: wait until all clients die, then hope for the best. */
++        while (1) {
++            UNLOCK_NV_LINUX_DEVICES();
+             os_schedule();
+-    }
++            LOCK_NV_LINUX_DEVICES();
++
++            nvl = pci_get_drvdata(dev);
++            if (!nvl || (nvl->dev != dev))
++            {
++                goto done;
++            }
++
++            if (NV_ATOMIC_READ(nvl->usage_count) == 0)
++            {
++                break;
++            }
++        }
+ 
++        nv_printf(NV_DBG_ERRORS,
++                  "NVRM: Usage count is now zero, proceeding to remove the GPU\n");
++        nv_printf(NV_DBG_ERRORS,
++                  "NVRM: This is not actually supposed to work lol. Hope it does tho 👍\n");
++        nv_printf(NV_DBG_ERRORS,
++                  "NVRM: You probably want to reload nvidia-modeset now if you want any "
++                  "of this to ever start up again, but like, man, that's your choice entirely\n");
++    }
+     nv = NV_STATE_PTR(nvl);
+     if (nvl == nv_linux_devices)
+         nv_linux_devices = nvl->next;
+@@ -4712,6 +4749,22 @@
+     up(&nvl->ldata_lock);
+ }
+ 
++atomic_t *nvidia_dev_dead(NvU32 gpu_id)
++{
++    nv_linux_state_t *nvl;
++    atomic_t *ret;
++
++    /* Takes nvl->ldata_lock */
++    nvl = find_gpu_id(gpu_id);
++    if (!nvl)
++        return NV_FALSE;
++
++    ret = &nvl->dead;
++    up(&nvl->ldata_lock);
++
++    return ret;
++}
++
+ /*
+  * Like nvidia_dev_get but uses UUID instead of gpu_id. Note that this may
+  * trigger initialization and teardown of unrelated devices to look up their
+diff -ur original/nvidia/nv-modeset-interface.c patched/nvidia/nv-modeset-interface.c
+--- original/nvidia/nv-modeset-interface.c	2018-08-22 00:55:22.000000000 +0000
++++ patched/nvidia/nv-modeset-interface.c	2018-10-28 07:20:25.959243110 +0000
+@@ -114,6 +114,7 @@
+         .close_gpu      = nvidia_dev_put,
+         .op             = rm_kernel_rmapi_op, /* provided by nv-kernel.o */
+         .set_callbacks  = nvidia_modeset_set_callbacks,
++        .gpu_dead       = nvidia_dev_dead,
+     };
+ 
+     if (strcmp(rm_ops->version_string, NV_VERSION_STRING) != 0)
+diff -ur original/nvidia/nv-reg.h patched/nvidia/nv-reg.h
+diff -ur original/nvidia-modeset/nvidia-modeset-linux.c patched/nvidia-modeset/nvidia-modeset-linux.c
+--- original/nvidia-modeset/nvidia-modeset-linux.c	2018-09-23 12:20:02.000000000 +0000
++++ patched/nvidia-modeset/nvidia-modeset-linux.c	2018-10-28 07:47:14.738703417 +0000
+@@ -75,6 +75,9 @@
+ 
+ static struct semaphore nvkms_lock;
+ 
++static NvU32 clopen_gpu_id;
++static NvBool leak_on_unload;
++
+ /*************************************************************************
+  * NVKMS executes queued work items on a single kthread.
+  *************************************************************************/
+@@ -89,6 +92,9 @@
+ struct nvkms_per_open {
+     void *data;
+ 
++    NvU32 gpu_id;
++    atomic_t *gpu_dead;
++
+     enum NvKmsClientType type;
+ 
+     union {
+@@ -711,6 +717,9 @@
+     nvidia_modeset_stack_ptr stack = NULL;
+     NvBool ret;
+ 
++    printk(KERN_INFO NVKMS_LOG_PREFIX "nvkms_open_gpu called with %08x, pid %d\n",
++           gpuId, current->pid);
++
+     if (__rm_ops.alloc_stack(&stack) != 0) {
+         return NV_FALSE;
+     }
+@@ -719,6 +728,10 @@
+ 
+     __rm_ops.free_stack(stack);
+ 
++    if (ret) {
++        clopen_gpu_id = gpuId;
++    }
++
+     return ret;
+ }
+ 
+@@ -726,12 +739,17 @@
+ {
+     nvidia_modeset_stack_ptr stack = NULL;
+ 
++    printk(KERN_INFO NVKMS_LOG_PREFIX "nvkms_close_gpu called with %08x, pid %d\n",
++           gpuId, current->pid);
++
+     if (__rm_ops.alloc_stack(&stack) != 0) {
+         return;
+     }
+ 
+     __rm_ops.close_gpu(gpuId, stack);
+ 
++    clopen_gpu_id = gpuId;
++
+     __rm_ops.free_stack(stack);
+ }
+ 
+@@ -771,8 +789,14 @@
+ 
+     popen->type = type;
+ 
++    printk(KERN_INFO NVKMS_LOG_PREFIX "entering nvkms_open_common, pid %d\n",
++           current->pid);
++
+     *status = down_interruptible(&nvkms_lock);
+ 
++    printk(KERN_INFO NVKMS_LOG_PREFIX "taken lock in nvkms_open_common, pid %d\n",
++           current->pid);
++
+     if (*status != 0) {
+         goto failed;
+     }
+@@ -781,6 +805,9 @@
+ 
+     up(&nvkms_lock);
+ 
++    printk(KERN_INFO NVKMS_LOG_PREFIX "given up lock in nvkms_open_common, pid %d\n",
++           current->pid);
++
+     if (popen->data == NULL) {
+         *status = -EPERM;
+         goto failed;
+@@ -799,10 +826,16 @@
+ 
+     *status = 0;
+ 
++    printk(KERN_INFO NVKMS_LOG_PREFIX "exiting in nvkms_open_common, pid %d\n",
++           current->pid);
++
+     return popen;
+ 
+ failed:
+ 
++    printk(KERN_INFO NVKMS_LOG_PREFIX "error in nvkms_open_common, pid %d\n",
++           current->pid);
++
+     nvkms_free(popen, sizeof(*popen));
+ 
+     return NULL;
+@@ -816,14 +849,36 @@
+      * mutex.
+      */
+ 
++    printk(KERN_INFO NVKMS_LOG_PREFIX "entering nvkms_close_common, pid %d\n",
++           current->pid);
++
+     down(&nvkms_lock);
+ 
+-    nvKmsClose(popen->data);
++    printk(KERN_INFO NVKMS_LOG_PREFIX "taken lock in nvkms_close_common, pid %d\n",
++           current->pid);
++
++    if (popen->gpu_id != 0 && atomic_read(popen->gpu_dead) != 0) {
++        printk(KERN_ERR NVKMS_LOG_PREFIX "awwww u need cleanup :3 "
++               "in nvkms_close_common, pid %d\n",
++               current->pid);
++
++        nvkms_close_gpu(popen->gpu_id);
++
++        popen->gpu_id = 0;
++        popen->gpu_dead = NULL;
++
++        leak_on_unload = NV_TRUE;
++    } else {
++        nvKmsClose(popen->data);
++    }
+ 
+     popen->data = NULL;
+ 
+     up(&nvkms_lock);
+ 
++    printk(KERN_INFO NVKMS_LOG_PREFIX "given up lock in nvkms_close_common, pid %d\n",
++           current->pid);
++
+     if (popen->type == NVKMS_CLIENT_KERNEL_SPACE) {
+         /*
+          * Flush any outstanding nvkms_kapi_event_kthread_q_callback() work
+@@ -844,6 +899,9 @@
+     }
+ 
+     nvkms_free(popen, sizeof(*popen));
++
++    printk(KERN_INFO NVKMS_LOG_PREFIX "exiting nvkms_close_common, pid %d\n",
++           current->pid);
+ }
+ 
+ int NVKMS_API_CALL nvkms_ioctl_common
+@@ -855,20 +913,58 @@
+     int status;
+     NvBool ret;
+ 
++    printk(KERN_INFO NVKMS_LOG_PREFIX "entering nvkms_ioctl_common, pid %d\n",
++           current->pid);
++
+     status = down_interruptible(&nvkms_lock);
+     if (status != 0) {
+         return status;
+     }
+ 
++    printk(KERN_INFO NVKMS_LOG_PREFIX "taken lock in nvkms_ioctl_common, pid %d\n",
++           current->pid);
++
++    if (popen->gpu_id != 0 && atomic_read(popen->gpu_dead) != 0) {
++        goto dead;
++    }
++
++    clopen_gpu_id = 0;
++
+     if (popen->data != NULL) {
+         ret = nvKmsIoctl(popen->data, cmd, address, size);
+     } else {
+         ret = NV_FALSE;
+     }
+ 
++    if (clopen_gpu_id != 0) {
++        if (!popen->gpu_id) {
++            printk(KERN_INFO NVKMS_LOG_PREFIX "detected gpu %08x open in nvkms_ioctl_common, "
++                   "pid %d\n", clopen_gpu_id, current->pid);
++            popen->gpu_id = clopen_gpu_id;
++            popen->gpu_dead = __rm_ops.gpu_dead(clopen_gpu_id);
++        } else {
++            printk(KERN_INFO NVKMS_LOG_PREFIX "detected gpu %08x close in nvkms_ioctl_common, "
++                   "pid %d\n", clopen_gpu_id, current->pid);
++            popen->gpu_id = 0;
++            popen->gpu_dead = NULL;
++        }
++    }
++
+     up(&nvkms_lock);
+ 
++    printk(KERN_INFO NVKMS_LOG_PREFIX "given up lock in nvkms_ioctl_common, pid %d\n",
++           current->pid);
++
+     return ret ? 0 : -EPERM;
++
++dead:
++    up(&nvkms_lock);
++
++    printk(KERN_ERR NVKMS_LOG_PREFIX "*notices ur gpu is dead* owo whats this "
++           "in nvkms_ioctl_common, pid %d\n",
++           current->pid);
++
++    return -ENOENT;
+ }
+ 
+ /*************************************************************************
+@@ -1239,9 +1335,14 @@
+ 
+     nvkms_proc_exit();
+ 
+-    down(&nvkms_lock);
+-    nvKmsModuleUnload();
+-    up(&nvkms_lock);
++    if(leak_on_unload) {
++        printk(KERN_ERR NVKMS_LOG_PREFIX "im just gonna leak all the kms junk ok? "
++               "haha nvm wasnt a question. in nvkms_exit\n");
++    } else {
++        down(&nvkms_lock);
++        nvKmsModuleUnload();
++        up(&nvkms_lock);
++    }
+ 
+     /*
+      * At this point, any pending tasks should be marked canceled, but
