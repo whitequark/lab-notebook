@@ -35,7 +35,7 @@ The implementation is as follows:
 
 On these platforms, D31:F0 is solely dedicated to being an LPC bridge. The GPIOs are located in what Intel calls "private configuration space", accessible through a "primary to sideband bridge" through "target port IDs". All this seems extremely opaque, but in reality very little has changed.
 
-The "primary to sideband bridge" is simply a PCI function (located at D31:F1) that has BAR0, a memory BAR, "private configuration space", initialized by platform firmware to point to some location it finds convenient. To prevent the OS from reassigning the BAR, the firmware "hides" the device, namely sets a bit in the configuration space that causes all reads to return all-ones. (Writes still go through.) The "target port ID" is the bits [23:16] of the D31:F1 BAR0.
+The "primary to sideband bridge" is simply a PCI function (located at D31:F1) that has BAR0, a memory BAR, "private configuration space", initialized by platform firmware to point to some location it finds convenient. To prevent the OS from reassigning the BAR, the firmware "hides" the device, namely sets a bit in the configuration space that causes all reads to return all-ones. (Writes still go through.) The "target port ID" is the bits \[23:16\] of the D31:F1 BAR0.
 
 The implementation is as follows:
 
@@ -66,7 +66,7 @@ Run `make && sudo ./gpioke` and enjoy a printout of GPIO status live from your c
 CFLAGS = -std=c11 -lpci -Wall -g
 
 gpioke: gpioke.c
-  $(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 <% end %>
 
 <%= highlight_code 'c', '/files/gpioke/gpioke.c' %>
