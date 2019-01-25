@@ -63,10 +63,11 @@ The implementation is as follows:
 Run `make && sudo ./gpioke` and enjoy a printout of GPIO status live from your chipset. This demo was written very carefully and is not supposed to ever crash your machine. However, it has not undergone a lot of live testing.
 
 <% highlight_code 'make', 'Makefile' do %>
-CFLAGS = -std=c11 -lpci -Wall -g
+CFLAGS = -std=c11 -Wall -g
+LIBS   = -lpci
 
 gpioke: gpioke.c
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 <% end %>
 
 <%= highlight_code 'c', '/files/gpioke/gpioke.c' %>
