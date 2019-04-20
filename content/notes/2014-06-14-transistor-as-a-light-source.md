@@ -14,7 +14,7 @@ In this note I demonstrate that a bipolar transistor can be made to emit light.
 Demonstration
 -------------
 
-For observing this effect, it's best to use a big, easy to decap transistor with massive body that would function as a heatsink. КТ805БМ in TO-3 package (known on the West as [BDW21A](http://products.semelab-tt.com/pdf/bipolar/shortform/SF_BDW21A.pdf)) is perfectly fit for the task.
+For observing this effect, it's best to use a big, easy to decap transistor with massive body that would function as a heatsink. КТ805БМ in TO-3 package (known in the West as [BDW21A](http://products.semelab-tt.com/pdf/bipolar/shortform/SF_BDW21A.pdf)) is perfectly fit for the task.
 
 First, we need to decap it. This is somewhat problematic, as TO-3 features a solid 1mm of aluminium. I broke a diamond disc and two endmills while trying to decap it by hand and using my CNC mill, and eventually pried the half-detached cap out using diagonal cutters. It was not an enjoyable process, but it worked.
 
