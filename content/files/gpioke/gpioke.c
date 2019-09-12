@@ -256,8 +256,8 @@ int try_pch(struct pci_access *pci) {
                      memfd, sbreg_addr);
   if(sbmap == MAP_FAILED) {
     if(errno == EPERM) {
-      // The requirement might be relaxed to CONFIG_IO_DEVMEM_STRICT=n, but I'm not sure.
       MSG("Is your kernel configured with CONFIG_DEVMEM_STRICT=n?");
+      MSG("Try rebooting and specifying iomem=relaxed on kernel command line.");
     }
     ERR("Cannot map SBREG");
   }
