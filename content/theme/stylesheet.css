@@ -218,6 +218,7 @@ pre {
   border: 1px solid #ccc;
   margin-bottom: 15px;
   overflow-x: auto;
+  padding: 4px;
 }
 
 .rouge-table {
