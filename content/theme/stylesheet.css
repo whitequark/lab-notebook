@@ -317,6 +317,14 @@ th, td, caption {
   vertical-align: middle;
 }
 
+blockquote {
+  border-left: 3px solid #ccc;
+  padding-left: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background: #eee;
+}
+
 span.overline {
   border-top: 1px solid;
 }
