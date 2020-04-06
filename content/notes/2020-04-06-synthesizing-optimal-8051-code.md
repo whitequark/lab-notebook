@@ -15,7 +15,7 @@ While working on an application targeting Nordic nRF24LE1, a wireless SoC with a
 
 # Introduction
 
-My chosen approach (thanks for [John Regehr](https://www.cs.utah.edu/~regehr/) for the [suggestion](https://twitter.com/johnregehr/status/1212563858524499968)) is to implement an interpreter for an abstract 8051 assembly representation in [Racket](https://racket-lang.org) and then use [Rosette](https://emina.github.io/rosette/) to translate assertions about the results of interpreting an arbitrary piece of code into a query for an [SMT solver](https://en.wikipedia.org/wiki/Satisfiability_modulo_theories).
+My chosen approach (thanks to [John Regehr](https://www.cs.utah.edu/~regehr/) for the [suggestion](https://twitter.com/johnregehr/status/1212563858524499968)) is to implement an interpreter for an abstract 8051 assembly representation in [Racket](https://racket-lang.org) and then use [Rosette](https://emina.github.io/rosette/) to translate assertions about the results of interpreting an arbitrary piece of code into a query for an [SMT solver](https://en.wikipedia.org/wiki/Satisfiability_modulo_theories).
 
 Rosette greatly simplifies this task because it lets me avoid learning anything about SMT solvers, and only requires me to understand the constraints of its symbolic execution approach. (Only a small subset of Racket is safe to use in Rosette, and functions outside of that subset are hard to use correctly without an in-depth understaning of how Rosette works.)
 
