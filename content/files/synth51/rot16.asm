@@ -1,0 +1,163 @@
+; rotate right R1:R0 by 0
+; rotate right R1:R0 by 1
+MOV A, R1
+MOV C, ACC.0
+XCH A, R0
+RRC A
+XCH A, R0
+RRC A
+MOV R1, A
+; rotate right R1:R0 by 2
+MOV A, R1
+MOV C, ACC.0
+XCH A, R0
+RRC A
+XCH A, R0
+RRC A
+MOV C, ACC.0
+XCH A, R0
+RRC A
+XCH A, R0
+RRC A
+MOV R1, A
+; rotate right R1:R0 by 3
+MOV A, R0
+XRL A, R1
+MOV R1, A
+ANL A, #0xf8
+XRL A, R0
+SWAP A
+RL A
+XCH A, R1
+SWAP A
+RL A
+XRL A, R1
+MOV R0, A
+; rotate right R1:R0 by 4
+MOV A, R0
+XRL A, R1
+ANL A, #0xf0
+XCH A, R1
+XRL A, R1
+SWAP A
+XCH A, R0
+XRL A, R1
+SWAP A
+MOV R1, A
+; rotate right R1:R0 by 5
+MOV A, R1
+XRL A, R0
+ANL A, #0x1f
+XCH A, R0
+XRL A, R0
+RR A
+SWAP A
+XCH A, R0
+XRL A, R1
+SWAP A
+RR A
+MOV R1, A
+; rotate right R1:R0 by 6
+MOV A, R1
+RLC A
+XCH A, R0
+RLC A
+XCH A, R1
+RLC A
+MOV C, ACC.7
+XCH A, R1
+RLC A
+XCH A, R1
+RLC A
+MOV R0, A
+; rotate right R1:R0 by 7
+MOV A, R0
+MOV C, ACC.7
+MOV A, R1
+RLC A
+XCH A, R0
+RLC A
+MOV R1, A
+; rotate right R1:R0 by 8
+MOV A, R1
+XCH A, R0
+MOV R1, A
+; rotate right R1:R0 by 9
+MOV A, R1
+RRC A
+MOV A, R0
+RRC A
+XCH A, R1
+RRC A
+MOV R0, A
+; rotate right R1:R0 by 10
+MOV A, R1
+XRL A, R0
+ANL A, #0x3
+XRL A, R1
+RR A
+RR A
+XCH A, R0
+XRL A, R1
+RR A
+RR A
+XRL A, R0
+MOV R1, A
+; rotate right R1:R0 by 11
+MOV A, R1
+XRL A, R0
+MOV R1, A
+ANL A, #0x7
+XRL A, R0
+RL A
+SWAP A
+XCH A, R1
+RL A
+SWAP A
+XRL A, R1
+MOV R0, A
+; rotate right R1:R0 by 12
+MOV A, R0
+XRL A, R1
+ANL A, #0xf0
+XCH A, R1
+XRL A, R1
+SWAP A
+XCH A, R1
+XRL A, R0
+SWAP A
+MOV R0, A
+; rotate right R1:R0 by 13
+MOV A, R1
+XRL A, R0
+ANL A, #0xe0
+XCH A, R0
+XRL A, R0
+SWAP A
+RR A
+XCH A, R0
+XRL A, R1
+RR A
+SWAP A
+MOV R1, A
+; rotate right R1:R0 by 14
+MOV A, R1
+MOV C, ACC.7
+XCH A, R0
+RLC A
+XCH A, R0
+RLC A
+MOV C, ACC.7
+XCH A, R0
+RLC A
+XCH A, R0
+RLC A
+MOV R1, A
+; rotate right R1:R0 by 15
+MOV A, R1
+MOV C, ACC.7
+XCH A, R0
+RLC A
+XCH A, R0
+RLC A
+MOV R1, A

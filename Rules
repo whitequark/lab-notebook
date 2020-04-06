@@ -28,14 +28,12 @@ compile '/{notes,drafts}/*.md' do
   filter :colorize_syntax, default_colorizer: :rouge, rouge: { legacy: true, line_numbers: true }
   layout '/note.*'
   layout '/default.*'
-  filter :typogruby
 end
 
 compile '/{index.html,drafts.html,notes/*.html}' do
   filter :erb
   layout '/category.*'
   layout '/default.*'
-  filter :typogruby
 end
 
 compile '/images/**/*.{jpeg,png}', rep: :thumbnail do
