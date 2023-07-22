@@ -12,8 +12,8 @@ Have you ever blinked a LED using DMA? No loops. No use of the CPU after the ini
 
 <%= highlight_code 'rust', '/files/dmablink/main.rs' %>
 
-The timer is only used here to make the blinking observable to the human eye. You could remove it entirely and have the DMA generate high frequency waveforms, though not as quickly as the CPU could do it with the bit banding areas.
+The timer is only used here to make the blinking observable to the human eye. You could remove it entirely and have the DMA peripheral generate high frequency waveforms, though not as quickly as the CPU could do it with the bit banding areas.
 
-Actually, the project I designed this technique for would be using the DMA to generate composite video waveforms without any involvement of the CPU---by writing the analog level to the pins with a resistor ladder (the DAC isn't fast enough), configuring the timer for the next interval, all while retriggering itself several times.
+Actually, the project I designed this technique for would be using the DMA peripheral to generate composite video waveforms without any involvement of the CPU---by writing the analog level to the pins with a resistor ladder (the DAC isn't fast enough), configuring the timer for the next interval, all while retriggering itself to advance its state.
 
 The [complete project](/files/dmablink/dmablink.zip) can be downloaded. It targets STM32F302R8, but will work on any STM32 chip with the "BDMA" type of the DMA peripheral. (There are several, and this one is the most basic.) If you have a checkout of [stm32-data](https://github.com/embassy-rs/stm32-data/), searching for `"kind": "bdma"` under `build/data/chips/` will show the devices that are compatible.
